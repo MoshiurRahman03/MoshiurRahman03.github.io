@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moshiur Rahman — Research Portfolio</title>
+<meta name="description" content="Moshiur Rahman — BSc EEE, BUET. Research in privacy-preserving machine learning, federated learning, and quantum computing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16232F; --navy-2:#1F3245;
+    --paper:#F1EFE6; --paper-2:#E8E5D8;
+    --ink:#1A1D1B; --brass:#9C7A34; --brass-soft:#C7A559;
+    --line: rgba(26,29,27,0.14);
+    --maxw: 1180px;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Source Sans 3', sans-serif; font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; line-height:1.14; margin:0; color:var(--navy); }
+  a{ color:inherit; }
+  p{ margin:0 0 1em 0; max-width:64ch; }
+  ul{ margin:0; padding:0; list-style:none; }
+
+  .shell{ display:flex; align-items:flex-start; max-width:var(--maxw); margin:0 auto; }
+
+  /* ---- Rail ---- */
+  .rail{
+    position:sticky; top:0; width:280px; flex:0 0 280px; height:100vh;
+    background:var(--navy); color:var(--paper);
+    padding:40px 30px; display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .avatar{
+    width:76px; height:76px; border-radius:50%;
+    background:linear-gradient(155deg, var(--brass-soft), var(--brass));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:26px; color:var(--navy);
+    margin-bottom:18px;
+  }
+  .rail-top h1{ color:var(--paper); font-size:26px; margin-bottom:4px; }
+  .rail-top .role{ font-size:14px; color:rgba(241,239,230,0.68); margin-bottom:30px; max-width:22ch; }
+
+  .rail nav ul{ display:flex; flex-direction:column; gap:1px; }
+  .rail nav button{
+    all:unset; cursor:pointer;
+    display:flex; align-items:center; gap:11px;
+    font-family:'Source Sans 3', sans-serif; font-size:15px;
+    color:rgba(241,239,230,0.6);
+    padding:10px 10px; border-left:2px solid transparent;
+    width:100%; border-radius:2px;
+    transition:color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .rail nav button svg{ width:16px; height:16px; flex:0 0 16px; opacity:.85; }
+  .rail nav button:hover{ color:var(--paper); }
+  .rail nav button.active{
+    color:var(--paper); border-left-color:var(--brass-soft);
+    background:rgba(241,239,230,0.05);
+    font-weight:600;
+  }
+  .rail nav a.dl{
+    display:flex; align-items:center; gap:11px;
+    font-size:15px; text-decoration:none;
+    color:rgba(241,239,230,0.6);
+    padding:10px 10px; border-left:2px solid transparent;
+    margin-top:6px; border-top:1px solid rgba(241,239,230,0.14); padding-top:16px;
+  }
+  .rail nav a.dl:hover{ color:var(--paper); }
+  .rail nav a.dl svg{ width:16px; height:16px; opacity:.85; }
+
+  .rail-bottom{ display:flex; gap:14px; }
+  .rail-bottom a{ opacity:.65; transition:opacity .15s; }
+  .rail-bottom a:hover{ opacity:1; }
+  .rail-bottom svg{ width:18px; height:18px; }
+
+  /* ---- Main / sections ---- */
+  main{ flex:1; min-width:0; padding:56px 60px 90px; }
+  .panel{ display:none; animation:fade .25s ease; }
+  .panel.active{ display:block; }
+  @keyframes fade{ from{ opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
+
+  .panel h2{ font-size:30px; margin-bottom:26px; }
+  .eyebrow{ font-family:'Fraunces',serif; font-size:14px; color:var(--brass); margin-bottom:6px; display:block; }
+
+  .intro p{ font-size:19px; max-width:60ch; color:#2b2f2c; }
+  .interests{ margin-top:20px; display:flex; flex-wrap:wrap; gap:10px; margin-bottom:36px; }
+  .interests span{ font-size:13.5px; padding:6px 12px; border:1px solid var(--line); border-radius:2px; color:var(--navy-2); background:var(--paper-2); }
+
+  .glance{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .glance-card{ background:var(--paper-2); border:1px solid var(--line); padding:22px; }
+  .glance-card .tag{ display:inline-block; font-size:12.5px; padding:3px 9px; background:var(--navy); color:var(--paper); border-radius:2px; margin-bottom:12px; }
+  .glance-card h3{ font-size:18px; margin-bottom:6px; }
+  .glance-card p{ font-size:14.5px; color:#444; margin-bottom:0; }
+
+  .edu-block .school{ font-family:'Fraunces',serif; font-size:22px; color:var(--navy); margin-bottom:2px; }
+  .edu-block .meta{ font-size:14.5px; color:#555; margin-bottom:20px; }
+  .thesis-title{ font-style:italic; color:var(--navy-2); margin-bottom:14px; max-width:60ch; }
+  .edu-block ul li{ position:relative; padding-left:20px; margin-bottom:9px; max-width:62ch; }
+  .edu-block ul li::before{ content:""; position:absolute; left:0; top:10px; width:6px; height:1px; background:var(--brass); }
+  .supervisor{ margin-top:18px; font-size:15px; color:#444; }
+
+  .course-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px 40px; margin-top:36px; padding-top:32px; border-top:1px solid var(--line); }
+  .course-cat h3{ font-size:15px; font-family:'Source Sans 3',sans-serif; font-weight:700; color:var(--navy-2); margin-bottom:10px; }
+  .course-cat ul li{ font-size:15px; color:#333; padding:5px 0; border-bottom:1px dashed var(--line); }
+  .course-cat ul li:last-child{ border-bottom:none; }
+
+  .pub{ border-left:2px solid var(--brass); padding-left:20px; max-width:66ch; }
+  .pub .pub-title{ font-size:17px; color:var(--navy); font-weight:600; }
+  .pub .pub-meta{ font-size:14.5px; color:#555; margin-top:6px; }
+  .pub .status{ display:inline-block; margin-top:10px; font-size:12.5px; padding:3px 9px; background:var(--paper-2); color:var(--navy-2); border-radius:2px; }
+
+  .skills-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px 40px; }
+  .skill-cat h3{ font-size:15px; font-weight:700; color:var(--navy-2); margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid var(--line); }
+  .skill-cat p{ font-size:15px; color:#333; margin-bottom:0; }
+
+  .proj-group{ margin-bottom:34px; }
+  .proj-group:last-child{ margin-bottom:0; }
+  .proj-group > h3{ font-weight:700; font-size:13.5px; letter-spacing:.01em; color:var(--brass); margin-bottom:14px; }
+  .proj{ display:grid; grid-template-columns:2fr 3fr; gap:24px; padding:16px 0; border-top:1px solid var(--line); }
+  .proj:first-of-type{ border-top:none; }
+  .proj .proj-name{ font-family:'Fraunces',serif; font-size:18px; color:var(--navy); margin-bottom:6px; }
+  .proj .proj-tools{ font-size:13px; color:var(--brass); }
+  .proj .proj-desc{ font-size:15.5px; color:#333; margin:0; }
+
+  .contact-list{ margin-bottom:36px; }
+  .contact-list li{ font-size:16px; padding:9px 0; border-bottom:1px dashed var(--line); display:flex; gap:10px; align-items:center; }
+  .contact-list li svg{ width:16px; height:16px; color:var(--brass); flex:0 0 16px; }
+  .ref-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .ref-card{ padding:22px; background:var(--paper-2); border:1px solid var(--line); }
+  .ref-card .ref-name{ font-family:'Fraunces',serif; font-size:18px; color:var(--navy); }
+  .ref-card .ref-title{ font-size:14px; color:#555; margin:4px 0 10px; }
+  .ref-card .ref-line{ font-size:14px; color:#333; display:block; }
+  .ref-card .ref-role{ margin-top:10px; font-size:13px; color:var(--brass); font-style:italic; }
+
+  /* ---- Mobile ---- */
+  .mobile-nav{ display:none; }
+  @media (max-width: 880px){
+    .shell{ flex-direction:column; }
+    .rail{ position:relative; width:100%; flex:none; height:auto; padding:22px 20px; }
+    .rail nav{ display:none; }
+    .rail-top{ display:flex; align-items:center; gap:14px; }
+    .avatar{ margin-bottom:0; width:56px; height:56px; font-size:20px; }
+    .rail-top .role{ margin-bottom:0; }
+    .rail-bottom{ display:none; }
+    .mobile-nav{
+      display:flex; gap:6px; overflow-x:auto; padding:14px 16px;
+      background:var(--navy-2); border-top:1px solid rgba(241,239,230,0.1);
+    }
+    .mobile-nav button{
+      all:unset; cursor:pointer; white-space:nowrap; font-size:13.5px;
+      color:rgba(241,239,230,0.65); padding:7px 12px; border-radius:20px;
+    }
+    .mobile-nav button.active{ background:var(--brass); color:var(--navy); font-weight:600; }
+    main{ padding:36px 22px 70px; }
+    .glance, .skills-grid, .course-grid, .ref-grid{ grid-template-columns:1fr; }
+    .proj{ grid-template-columns:1fr; gap:6px; }
+  }
+
+  :focus-visible{ outline:2px solid var(--brass); outline-offset:2px; }
+  @media (prefers-reduced-motion: reduce){ .panel{ animation:none; } }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <aside class="rail">
+    <div>
+      <div class="rail-top">
+        <div class="avatar">MR</div>
+        <div>
+          <h1>Moshiur Rahman</h1>
+          <div class="role">BSc Candidate, EEE — BUET</div>
+        </div>
+      </div>
+      <nav aria-label="Section navigation" style="margin-top:32px;">
+        <ul id="nav-list">
+          <li><button data-target="home" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</button></li>
+          <li><button data-target="research"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v6L4 19a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-10V3"/><path d="M9 3h6"/></svg>Research</button></li>
+          <li><button data-target="education"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>Education</button></li>
+          <li><button data-target="publications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Publications</button></li>
+          <li><button data-target="skills"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Skills</button></li>
+          <li><button data-target="projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l2-3h5l2 3h9v13H3z"/></svg>Projects</button></li>
+          <li><button data-target="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</button></li>
+        </ul>
+        <a class="dl" href="cv.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download CV</a>
+      </nav>
+    </div>
+    <div class="rail-bottom">
+      <a href="mailto:moshiur2003rahman@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+      <a href="https://linkedin.com/in/moshiur-r-28479525b" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9v12"/><path d="M10 13a4 4 0 0 1 8 0v8"/></svg></a>
+    </div>
+  </aside>
+
+  <main>
+    <!-- HOME -->
+    <section id="home" class="panel active">
+      <div class="intro">
+        <span class="eyebrow">Welcome</span>
+        <h2>Hi, I'm Moshiur.</h2>
+        <p>I'm an undergraduate researcher in Electrical and Electronic Engineering at BUET, working at the intersection of privacy-preserving machine learning and cyber-physical systems, with a growing interest in quantum computing and applied robotics.</p>
+        <div class="interests">
+          <span>Privacy-Preserving Machine Learning</span>
+          <span>Differential Privacy in Cyber-Physical Systems</span>
+          <span>Quantum Computing</span>
+          <span>Robotics &amp; Automation</span>
+        </div>
+      </div>
+      <div class="glance">
+        <div class="glance-card">
+          <span class="tag">2022 – 2026</span>
+          <h3>BSc, Electrical &amp; Electronic Engineering</h3>
+          <p>Bangladesh University of Engineering and Technology (BUET) · CGPA 3.11/4.00</p>
+        </div>
+        <div class="glance-card">
+          <span class="tag">Under review</span>
+          <h3>Federated learning for smart-meter privacy</h3>
+          <p>Thesis work on privacy-preserving demographic identification, supervised by Dr. Hafiz Imtiaz — submitted to Journal of Cloud Computing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research" class="panel">
+      <span class="eyebrow">Research</span>
+      <h2>Research &amp; thesis</h2>
+      <div class="edu-block">
+        <p class="thesis-title">"Privacy-Preserving Socio-Demographic Characteristics Identification using Smart Meter Data in Federated Setting"</p>
+        <ul>
+          <li>Developed a distributed machine learning framework for privacy-aware smart grid data analytics.</li>
+          <li>Proposed and implemented a CAPE-PCA based dimensionality reduction technique for privacy-preserving feature extraction while retaining classification utility.</li>
+          <li>Designed a federated learning framework using PyTorch and Opacus for secure collaborative model training across locally distributed data sources.</li>
+        </ul>
+        <div class="supervisor">Supervisor: Dr. Hafiz Imtiaz, Professor, Department of EEE, BUET</div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="panel">
+      <span class="eyebrow">Education</span>
+      <h2>Education &amp; coursework</h2>
+      <div class="edu-block">
+        <div class="school">Bangladesh University of Engineering and Technology (BUET)</div>
+        <div class="meta">BSc in Electrical and Electronic Engineering · CGPA 3.11/4.00 · January 2022 – June 2026 · Dhaka, Bangladesh</div>
+      </div>
+      <div class="course-grid">
+        <div class="course-cat">
+          <h3>Core Electronics &amp; Circuits</h3>
+          <ul>
+            <li>Analog Electronics &amp; Laboratory</li>
+            <li>Digital Electronics &amp; Laboratory</li>
+            <li>Embedded Systems &amp; Laboratory</li>
+          </ul>
+        </div>
+        <div class="course-cat">
+          <h3>Power &amp; Control Systems</h3>
+          <ul>
+            <li>Power Electronics &amp; Laboratory</li>
+            <li>Electrical Machines &amp; Laboratory</li>
+            <li>Control Systems I &amp; Laboratory</li>
+            <li>Power System I, II &amp; Labs</li>
+            <li>Power System Operation and Control</li>
+            <li>Power Transmission and Distribution</li>
+            <li>Power System Protection &amp; Lab</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications" class="panel">
+      <span class="eyebrow">Publications</span>
+      <h2>Publications</h2>
+      <div class="pub">
+        <div class="pub-title">Privacy-Preserving Socio-Demographic Characteristics Identification using Smart Meter Data in Federated Setting</div>
+        <div class="pub-meta">Rahman, M., Islam, N., &amp; Imtiaz, H. (2026). Journal of Cloud Computing.</div>
+        <span class="status">Under editorial review</span>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="panel">
+      <span class="eyebrow">Skills</span>
+      <h2>Technical skills</h2>
+      <div class="skills-grid">
+        <div class="skill-cat"><h3>Programming</h3><p>MATLAB, C, Python, Verilog</p></div>
+        <div class="skill-cat"><h3>Embedded Systems &amp; Hardware</h3><p>Arduino, ESP32, STM32, FPGA, Raspberry Pi (4B, 8GB)</p></div>
+        <div class="skill-cat"><h3>Design &amp; Simulation Tools</h3><p>AutoCAD, PSpice, Proteus, Quartus</p></div>
+        <div class="skill-cat"><h3>System Modeling &amp; Analysis</h3><p>MATLAB/Simulink, PSAF</p></div>
+        <div class="skill-cat"><h3>Data Analysis &amp; Machine Learning</h3><p>NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, PyTorch, Opacus, OpenCV, Qiskit</p></div>
+        <div class="skill-cat"><h3>Office &amp; Documentation</h3><p>Microsoft 365, Overleaf (LaTeX)</p></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="panel">
+      <span class="eyebrow">Projects</span>
+      <h2>Academic projects</h2>
+
+      <div class="proj-group">
+        <h3>Power Systems</h3>
+        <div class="proj">
+          <div><div class="proj-name">Automatic Generation Control in a Two-Area System</div><div class="proj-tools">Simulink</div></div>
+          <p class="proj-desc">Characterized the dynamic inter-dependency between load disturbances, system frequency excursions, and tie-line power deviations in a two-area interconnected power system.</p>
+        </div>
+        <div class="proj">
+          <div><div class="proj-name">Adaptive P-Q Control of PV Generators in Microgrids Based on LSTM Forecasting</div><div class="proj-tools">MATLAB/Simulink, Python</div></div>
+          <p class="proj-desc">Developed an adaptive control strategy using LSTM-based power forecasting for photovoltaic generators, implemented in Simulink to enhance grid stability, power quality, and dynamic response in microgrid applications.</p>
+        </div>
+      </div>
+
+      <div class="proj-group">
+        <h3>Power Electronics</h3>
+        <div class="proj">
+          <div><div class="proj-name">1500W Sinusoidal PWM Inverter</div><div class="proj-tools">PSpice, Proteus</div></div>
+          <p class="proj-desc">Designed and validated a 1500W sinusoidal PWM inverter focused on stable, low-noise power supply design. Used PSpice to optimize switching losses and Proteus for microcontroller integration, ensuring clean PWM generation with a 555 timer.</p>
+        </div>
+      </div>
+
+      <div class="proj-group">
+        <h3>Embedded Systems &amp; Digital Electronics</h3>
+        <div class="proj">
+          <div><div class="proj-name">ESP32-Based Smart Notice Board with IoT Interface</div><div class="proj-tools">ESP32, IoT Protocols</div></div>
+          <p class="proj-desc">Built an IoT-enabled smart notice board using UART communication for data transfer and wireless protocols for remote updates, with an RTC module for time-based scheduling and real-time notifications.</p>
+        </div>
+        <div class="proj">
+          <div><div class="proj-name">Error Correction in a 32-bit Message Using FPGA</div><div class="proj-tools">FPGA, Verilog</div></div>
+          <p class="proj-desc">Implemented Hamming code error detection and correction on FPGA using Verilog.</p>
+        </div>
+      </div>
+
+      <div class="proj-group">
+        <h3>Robotics, Control Systems &amp; DSP</h3>
+        <div class="proj">
+          <div><div class="proj-name">Car-Mounted 6-DOF Robotic Arm for Visually Impaired Users</div><div class="proj-tools">Raspberry Pi, 6-DOF robotic hand, ultrasonic sensors, Python</div></div>
+          <p class="proj-desc">Programmed a 6-DOF robotic arm on Raspberry Pi, integrating ultrasonic, touch, and camera feedback with motor control algorithms for obstacle detection and navigation assistance.</p>
+        </div>
+        <div class="proj">
+          <div><div class="proj-name">Ball Balancing Plate with Image Processing</div><div class="proj-tools">Python, image processing, PID controller</div></div>
+          <p class="proj-desc">Designed a real-time closed-loop control system to stabilize a ball on a plate using camera-based image processing and sensor feedback, with a PID controller driving servo actuation.</p>
+        </div>
+        <div class="proj">
+          <div><div class="proj-name">Digit Recognition Using Image Processing in MATLAB</div><div class="proj-tools">MATLAB, image processing, CNN</div></div>
+          <p class="proj-desc">Built a machine learning-based digit recognition system in MATLAB, implementing feature extraction, preprocessing, and CNN-based classification for handwritten digits.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="panel">
+      <span class="eyebrow">Contact</span>
+      <h2>Get in touch</h2>
+      <ul class="contact-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:moshiur2003rahman@gmail.com">moshiur2003rahman@gmail.com</a></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:2006099@eee.buet.ac.bd">2006099@eee.buet.ac.bd</a></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.7a2 2 0 0 1-.4 2.2L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.2-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+8801856030357">+880 1856 030357</a></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Sher-e-Bangla Nagar, Dhaka 1205, Bangladesh</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9v12"/><path d="M10 13a4 4 0 0 1 8 0v8"/></svg><a href="https://linkedin.com/in/moshiur-r-28479525b" target="_blank" rel="noopener">linkedin.com/in/moshiur-r-28479525b</a></li>
+      </ul>
+
+      <span class="eyebrow">References</span>
+      <div class="ref-grid">
+        <div class="ref-card">
+          <div class="ref-name">Dr. Hafiz Imtiaz</div>
+          <div class="ref-title">Professor, Department of EEE, BUET</div>
+          <span class="ref-line"><a href="mailto:hafizimtiaz@eee.buet.ac.bd">hafizimtiaz@eee.buet.ac.bd</a></span>
+          <div class="ref-role">Undergraduate thesis supervisor</div>
+        </div>
+        <div class="ref-card">
+          <div class="ref-name">Dr. Celia Sahnaz</div>
+          <div class="ref-title">Professor, Department of EEE, BUET</div>
+          <span class="ref-line"><a href="mailto:celia@eee.buet.ac.bd">celia@eee.buet.ac.bd</a></span>
+          <div class="ref-role">Academic advisor and course instructor</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="mobile-nav" id="mobile-nav">
+  <button data-target="home" class="active">Home</button>
+  <button data-target="research">Research</button>
+  <button data-target="education">Education</button>
+  <button data-target="publications">Publications</button>
+  <button data-target="skills">Skills</button>
+  <button data-target="projects">Projects</button>
+  <button data-target="contact">Contact</button>
+</div>
+
+<script>
+  (function(){
+    var buttons = document.querySelectorAll('#nav-list button, #mobile-nav button');
+    var panels = document.querySelectorAll('.panel');
+
+    function activate(target, push){
+      panels.forEach(function(p){ p.classList.toggle('active', p.id === target); });
+      buttons.forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-target') === target); });
+      if(push !== false){ history.replaceState(null, '', '#' + target); }
+      document.querySelector('main').scrollTo({top:0});
+      window.scrollTo({top:0});
+    }
+
+    buttons.forEach(function(b){
+      b.addEventListener('click', function(){ activate(b.getAttribute('data-target')); });
+    });
+
+    var initial = (location.hash || '').replace('#','');
+    var validIds = Array.prototype.map.call(panels, function(p){ return p.id; });
+    if(validIds.indexOf(initial) !== -1){ activate(initial, false); }
+  })();
+</script>
+
+</body>
+</html>
