@@ -22,6 +22,20 @@
     font-family:'Source Sans 3', sans-serif; font-size:17px; line-height:1.65;
     -webkit-font-smoothing:antialiased;
   }
+  .pub-card{ background:var(--paper-2); border:1px solid var(--line); margin-bottom:20px; }
+.pub-card:last-child{ margin-bottom:0; }
+.pub-summary{ list-style:none; cursor:pointer; position:relative; padding:22px 64px 22px 22px; display:block; }
+.pub-summary::-webkit-details-marker{ display:none; }
+.pub-summary::marker{ content:""; }
+.pub-title{ font-size:17px; font-weight:600; color:var(--navy); margin-bottom:10px; max-width:66ch; }
+.pub-badge{ display:inline-block; font-size:12px; font-weight:600; padding:4px 11px; background:var(--brass); color:var(--navy); border-radius:3px; margin-bottom:12px; }
+.pub-meta{ font-size:14px; color:#555; }
+.pub-toggle{ position:absolute; top:22px; right:22px; width:32px; height:32px; background:var(--brass); border-radius:4px; }
+.pub-toggle::before{ content:""; position:absolute; width:14px; height:2px; background:var(--navy); top:50%; left:50%; transform:translate(-50%,-50%); }
+.pub-toggle::after{ content:""; position:absolute; width:2px; height:14px; background:var(--navy); top:50%; left:50%; transform:translate(-50%,-50%); transition:transform .2s ease; }
+details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
+.pub-abstract{ padding:0 22px 24px; border-top:1px solid var(--line); margin-top:-1px; }
+.pub-abstract p{ font-size:15px; color:#333; padding-top:18px; max-width:72ch; margin-bottom:0; }
   h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; line-height:1.14; margin:0; color:var(--navy); }
   a{ color:inherit; }
   p{ margin:0 0 1em 0; max-width:64ch; }
@@ -320,15 +334,24 @@
     </section>
 
     <!-- PUBLICATIONS -->
-    <section id="publications" class="panel">
-      <span class="eyebrow"><h2>Publications</h2></span>
-      <div class="pub">
-        <div class="pub-title">Privacy-Preserving Socio-Demographic Characteristics Identification using Smart Meter Data in Federated Setting</div>
-        <div class="pub-meta">Rahman, M., Islam, N., &amp; Imtiaz, H. (2026). Journal of Cloud Computing.</div>
-        <span class="status">Under editorial review</span>
-      </div>
-    </section>
+<section id="publications" class="panel">
+  <span class="eyebrow">Publications</span>
+  <h2>Publications</h2>
 
+  <details class="pub-card">
+    <summary class="pub-summary">
+      <div class="pub-title">Privacy-Preserving Socio-Demographic Characteristics Identification using Smart Meter Data in Federated Setting</div>
+      <span class="pub-badge">Journal Paper</span>
+      <div class="pub-meta">Rahman, M., Islam, N., &amp; Imtiaz, H.</div>
+      <div class="pub-meta">Journal of Cloud Computing</div>
+      <div class="pub-meta">Publication year: 2026 &middot; Under editorial review</div>
+      <span class="pub-toggle" aria-hidden="true"></span>
+    </summary>
+    <div class="pub-abstract">
+      <p><!-- Replace this paragraph with your paper's actual abstract --> Abstract goes here — paste the abstract from your manuscript once it is finalized.</p>
+    </div>
+  </details>
+</section>
     <!-- SKILLS -->
     <section id="skills" class="panel">
       <span class="eyebrow"><h2>Technical skills</h2></span>
