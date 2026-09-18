@@ -133,13 +133,21 @@ details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
   .skill-cat p{ font-size:15px; color:#333; margin-bottom:0; }
 
   .proj-group{ margin-bottom:34px; }
-  .proj-group:last-child{ margin-bottom:0; }
-  .proj-group > h3{ font-weight:700; font-size:13.5px; letter-spacing:.01em; color:var(--brass); margin-bottom:14px; }
-  .proj{ display:grid; grid-template-columns:2fr 3fr; gap:24px; padding:16px 0; border-top:1px solid var(--line); }
-  .proj:first-of-type{ border-top:none; }
-  .proj .proj-name{ font-family:'Fraunces',serif; font-size:18px; color:var(--navy); margin-bottom:6px; }
-  .proj .proj-tools{ font-size:13px; color:var(--brass); }
-  .proj .proj-desc{ font-size:15.5px; color:#333; margin:0; }
+.proj-group:last-child{ margin-bottom:0; }
+.proj-group > h3{ font-weight:700; font-size:13.5px; letter-spacing:.01em; color:var(--brass); margin-bottom:14px; }
+.proj{ display:grid; grid-template-columns:2fr 3fr; gap:24px; padding:16px 0; border-top:1px solid var(--line); }
+.proj:first-of-type{ border-top:none; }
+.proj .proj-name{ font-family:'Fraunces',serif; font-size:18px; color:var(--navy); margin-bottom:6px; }
+.proj .proj-tools{ font-size:13px; color:var(--brass); }
+.proj .proj-desc{ font-size:15.5px; color:#333; margin:0 0 10px 0; }
+
+.proj .proj-link{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:13.5px; font-weight:600; color:var(--navy-2);
+  text-decoration:none; border-bottom:1px solid var(--brass); padding-bottom:1px;
+}
+.proj .proj-link:hover{ color:var(--brass); }
+.proj .proj-link svg{ width:13px; height:13px; }
 
   .contact-grid{ display:grid; grid-template-columns:1fr 1.3fr; gap:28px; align-items:start; margin-top:10px; }
 .contact-card{ background:var(--paper-2); border:1px solid var(--line); padding:26px; }
@@ -331,6 +339,8 @@ details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
         <div class="meta">BSc in Electrical and Electronic Engineering · CGPA 3.11/4.00 · January 2022 – June 2026 · Dhaka, Bangladesh</div>
         <div class="school">Notre Dame College, Dhaka</div>
         <div class="meta">Higher Secondary School Certificate · GPA 5.00/5.00 · July 2018 – June 2020 · Dhaka, Bangladesh</div>
+        <div class="school">Basurhat A.H.C. Govt. High School</div>
+        <div class="meta">Secondary School Certificate · GPA 5.00/5.00 · Janury 2013 – MAy 2018 · Dhaka, Bangladesh</div>
       </div>
       
     </section>
@@ -368,58 +378,67 @@ details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" class="panel">
-      <span class="eyebrow"><h2>Academic projects</h2></span>
-  
+    <!-- PROJECTS -->
+<section id="projects" class="panel">
+  <span class="eyebrow">Projects</span>
+  <h2>Academic projects</h2>
 
-      <div class="proj-group">
-        <h3>Power Systems</h3>
-        <div class="proj">
-          <div><div class="proj-name">Automatic Generation Control in a Two-Area System</div><div class="proj-tools">Simulink</div></div>
-          <p class="proj-desc">Characterized the dynamic inter-dependency between load disturbances, system frequency excursions, and tie-line power deviations in a two-area interconnected power system.</p>
-        </div>
-        <div class="proj">
-          <div><div class="proj-name">Adaptive P-Q Control of PV Generators in Microgrids Based on LSTM Forecasting</div><div class="proj-tools">MATLAB/Simulink, Python</div></div>
-          <p class="proj-desc">Developed an adaptive control strategy using LSTM-based power forecasting for photovoltaic generators, implemented in Simulink to enhance grid stability, power quality, and dynamic response in microgrid applications.</p>
-        </div>
-      </div>
+  <div class="proj-group">
+    <h3>Power Systems</h3>
+    <div class="proj">
+      <div><div class="proj-name">Automatic Generation Control in a Two-Area System</div><div class="proj-tools">Simulink</div></div>
+      <p class="proj-desc">Characterized the dynamic inter-dependency between load disturbances, system frequency excursions, and tie-line power deviations in a two-area interconnected power system.</p>
+      <a class="proj-link" href="projects/agc-two-area.html">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="proj">
+      <div><div class="proj-name">Adaptive P-Q Control of PV Generators in Microgrids Based on LSTM Forecasting</div><div class="proj-tools">MATLAB/Simulink, Python</div></div>
+      <p class="proj-desc">Developed an adaptive control strategy using LSTM-based power forecasting for photovoltaic generators, implemented in Simulink to enhance grid stability, power quality, and dynamic response in microgrid applications.</p>
+      <a class="proj-link" href="projects/pv-lstm-microgrid.html">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
 
-      <div class="proj-group">
-        <h3>Power Electronics</h3>
-        <div class="proj">
-          <div><div class="proj-name">1500W Sinusoidal PWM Inverter</div><div class="proj-tools">PSpice, Proteus</div></div>
-          <p class="proj-desc">Designed and validated a 1500W sinusoidal PWM inverter focused on stable, low-noise power supply design. Used PSpice to optimize switching losses and Proteus for microcontroller integration, ensuring clean PWM generation with a 555 timer.</p>
-        </div>
-      </div>
+  <div class="proj-group">
+    <h3>Power Electronics</h3>
+    <div class="proj">
+      <div><div class="proj-name">1500W Sinusoidal PWM Inverter</div><div class="proj-tools">PSpice, Proteus</div></div>
+      <p class="proj-desc">Designed and validated a 1500W sinusoidal PWM inverter focused on stable, low-noise power supply design. Used PSpice to optimize switching losses and Proteus for microcontroller integration, ensuring clean PWM generation with a 555 timer.</p>
+      <a class="proj-link" href="projects/pwm-inverter.html">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
 
-      <div class="proj-group">
-        <h3>Embedded Systems &amp; Digital Electronics</h3>
-        <div class="proj">
-          <div><div class="proj-name">ESP32-Based Smart Notice Board with IoT Interface</div><div class="proj-tools">ESP32, IoT Protocols</div></div>
-          <p class="proj-desc">Built an IoT-enabled smart notice board using UART communication for data transfer and wireless protocols for remote updates, with an RTC module for time-based scheduling and real-time notifications.</p>
-        </div>
-        <div class="proj">
-          <div><div class="proj-name">Error Correction in a 32-bit Message Using FPGA</div><div class="proj-tools">FPGA, Verilog</div></div>
-          <p class="proj-desc">Implemented Hamming code error detection and correction on FPGA using Verilog.</p>
-        </div>
-      </div>
+  <div class="proj-group">
+    <h3>Embedded Systems &amp; Digital Electronics</h3>
+    <div class="proj">
+      <div><div class="proj-name">ESP32-Based Smart Notice Board with IoT Interface</div><div class="proj-tools">ESP32, IoT Protocols</div></div>
+      <p class="proj-desc">Built an IoT-enabled smart notice board using UART communication for data transfer and wireless protocols for remote updates, with an RTC module for time-based scheduling and real-time notifications.</p>
+      <a class="proj-link" href="projects/esp32-notice-board.html">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="proj">
+      <div><div class="proj-name">Error Correction in a 32-bit Message Using FPGA</div><div class="proj-tools">FPGA, Verilog</div></div>
+      <p class="proj-desc">Implemented Hamming code error detection and correction on FPGA using Verilog.</p>
+      <a class="proj-link" href="projects/fpga-hamming-error-correction.html">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
 
-      <div class="proj-group">
-        <h3>Robotics, Control Systems &amp; DSP</h3>
-        <div class="proj">
-          <div><div class="proj-name">Car-Mounted 6-DOF Robotic Arm for Visually Impaired Users</div><div class="proj-tools">Raspberry Pi, 6-DOF robotic hand, ultrasonic sensors, Python</div></div>
-          <p class="proj-desc">Programmed a 6-DOF robotic arm on Raspberry Pi, integrating ultrasonic, touch, and camera feedback with motor control algorithms for obstacle detection and navigation assistance.</p>
-        </div>
-        <div class="proj">
-          <div><div class="proj-name">Ball Balancing Plate with Image Processing</div><div class="proj-tools">Python, image processing, PID controller</div></div>
-          <p class="proj-desc">Designed a real-time closed-loop control system to stabilize a ball on a plate using camera-based image processing and sensor feedback, with a PID controller driving servo actuation.</p>
-        </div>
-        <div class="proj">
-          <div><div class="proj-name">Digit Recognition Using Image Processing in MATLAB</div><div class="proj-tools">MATLAB, image processing, CNN</div></div>
-          <p class="proj-desc">Built a machine learning-based digit recognition system in MATLAB, implementing feature extraction, preprocessing, and CNN-based classification for handwritten digits.</p>
-        </div>
-      </div>
-    </section>
+  <div class="proj-group">
+    <h3>Robotics, Control Systems &amp; DSP</h3>
+    <div class="proj">
+      <div><div class="proj-name">Car-Mounted 6-DOF Robotic Arm for Visually Impaired Users</div><div class="proj-tools">Raspberry Pi, 6-DOF robotic hand, ultrasonic sensors, Python</div></div>
+      <p class="proj-desc">Programmed a 6-DOF robotic arm on Raspberry Pi, integrating ultrasonic, touch, and camera feedback with motor control algorithms for obstacle detection and navigation assistance.</p>
+      <a class="proj-link" href="projects/robotic-arm-visually-impaired.html">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="proj">
+      <div><div class="proj-name">Ball Balancing Plate with Image Processing</div><div class="proj-tools">Python, image processing, PID controller</div></div>
+      <p class="proj-desc">Designed a real-time closed-loop control system to stabilize a ball on a plate using camera-based image processing and sensor feedback, with a PID controller driving servo actuation.</p>
+      <a class="proj-link" href="projects/ball-balancing-plate.html">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="proj">
+      <div><div class="proj-name">Digit Recognition Using Image Processing in MATLAB</div><div class="proj-tools">MATLAB, image processing, CNN</div></div>
+      <p class="proj-desc">Built a machine learning-based digit recognition system in MATLAB, implementing feature extraction, preprocessing, and CNN-based classification for handwritten digits.</p>
+      <a class="proj-link" href="projects/digit-recognition-matlab.html">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
 
     <!-- CONTACT -->
     <section id="contact" class="panel">
