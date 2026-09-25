@@ -446,6 +446,7 @@ details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
       <div><div class="proj-name">Adaptive P-Q Control of PV Generators in Microgrids Based on LSTM Forecasting</div><div class="proj-tools">MATLAB/Simulink, Python</div><div class="proj-tools">Course:Power System II Lab</div><div class="proj-tools">Academic Level:L-4/T-1</div></div>
       <p class="proj-desc">Developed an adaptive control strategy using LSTM-based power forecasting for photovoltaic generators, implemented in Simulink to enhance grid stability, power quality, and dynamic response in microgrid applications.</p>
       <a class="proj-link" href="projects/pv-lstm-microgrid.html">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+      <a class="back-link" href="../index.html#projects">
     </div>
     <div class="proj">
       <div><div class="proj-name">Automatic Generation Control in a Two-Area System</div><div class="proj-tools">Tool/Software:Simulink</div><div class="proj-tools">Course:Power System I Lab</div><div class="proj-tools">Academic Level:L-3/T-1</div></div>
@@ -554,20 +555,30 @@ details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
     var panels = document.querySelectorAll('.panel');
 
     function activate(target, push){
+      if(!target) return;
       panels.forEach(function(p){ p.classList.toggle('active', p.id === target); });
       buttons.forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-target') === target); });
-      if(push !== false){ history.replaceState(null, '', '#' + target); }
-      document.querySelector('main').scrollTo({top:0});
-      window.scrollTo({top:0});
+      if(push !== false){ 
+        history.replaceState(null, '', '#' + target); 
+      }
+      window.scrollTo({top:0, behavior:'smooth'});
     }
 
     buttons.forEach(function(b){
       b.addEventListener('click', function(){ activate(b.getAttribute('data-target')); });
     });
 
-    var initial = (location.hash || '').replace('#','');
-    var validIds = Array.prototype.map.call(panels, function(p){ return p.id; });
-    if(validIds.indexOf(initial) !== -1){ activate(initial, false); }
+    // Handle hash on load AND whenever the hash changes
+    function handleHash(){
+      var initial = (location.hash || '').replace('#','') || 'home';
+      var validIds = Array.prototype.map.call(panels, function(p){ return p.id; });
+      if(validIds.indexOf(initial) !== -1){ 
+        activate(initial, false); 
+      }
+    }
+
+    window.addEventListener('hashchange', handleHash);
+    handleHash();
   })();
 </script>
 
