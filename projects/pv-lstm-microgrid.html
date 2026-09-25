@@ -1,1 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive P-Q Control of PV Generators in Microgrids Based on LSTM Forecasting — Moshiur Rahman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- RESET & BASE ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: #f9f7f4;
+      color: #1e1e1e;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------- DETAIL HEADER ---------- */
+    .detail-header {
+      background: #1e1e1e;
+      color: #f9f7f4;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .detail-header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #f9f7f4;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .back-link:hover {
+      opacity: 1;
+    }
+
+    .back-link svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .brand {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* ---------- SHELL ---------- */
+    .detail-shell {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* ---------- HERO ---------- */
+    .detail-hero {
+      margin-bottom: 3rem;
+    }
+
+    .detail-eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #8b6b4d;
+      background: #ede7e0;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .detail-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 2.6rem;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #1e1e1e;
+      margin-bottom: 1.25rem;
+    }
+
+    .detail-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .detail-tools span {
+      background: #e8e2db;
+      color: #3a3a3a;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      letter-spacing: 0.01em;
+    }
+
+    .overview {
+      font-size: 1.15rem;
+      color: #3a3a3a;
+      max-width: 720px;
+      line-height: 1.7;
+    }
+
+    /* ---------- SECTIONS ---------- */
+    .detail-section {
+      margin-bottom: 3rem;
+    }
+
+    .detail-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #1e1e1e;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+      border-bottom: 2px solid #e8e2db;
+      padding-bottom: 0.5rem;
+    }
+
+    /* ---------- OUTCOMES LIST ---------- */
+    .outcomes {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .outcomes li {
+      position: relative;
+      padding-left: 1.75rem;
+      font-size: 1rem;
+      color: #2c2c2c;
+    }
+
+    .outcomes li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 8px;
+      height: 8px;
+      background: #8b6b4d;
+      border-radius: 50%;
+    }
+
+    /* ---------- GALLERY ---------- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-tile {
+      background: #ede7e0;
+      border-radius: 10px;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      text-align: center;
+      color: #8b6b4d;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1.5px dashed #c8b8a8;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .gallery-tile:hover {
+      background: #e4dcd3;
+      border-color: #8b6b4d;
+    }
+
+    .gallery-tile svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+      margin: 0 auto 0.5rem;
+    }
+
+    /* ---------- FIGURE GRID (for charts) ---------- */
+    .figure-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .figure-card {
+      background: #ffffff;
+      border: 1px solid #e8e2db;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    .figure-card:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .figure-card .fig-placeholder {
+      background: #f4f0eb;
+      aspect-ratio: 16 / 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8b6b4d;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-bottom: 1px solid #e8e2db;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .figure-card .fig-caption {
+      padding: 0.85rem 1rem;
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.45;
+    }
+
+    .figure-card .fig-caption strong {
+      color: #1e1e1e;
+      font-weight: 600;
+    }
+
+    /* ---------- FILE CARDS ---------- */
+    .file-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .file-card {
+      flex: 1 1 220px;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      background: #ffffff;
+      border: 1px solid #e8e2db;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      text-decoration: none;
+      color: #1e1e1e;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+
+    .file-card:hover {
+      border-color: #8b6b4d;
+      box-shadow: 0 4px 16px rgba(139, 107, 77, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .file-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: #ede7e0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8b6b4d;
+    }
+
+    .file-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .file-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .file-hint {
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 640px) {
+      .detail-shell {
+        padding: 2rem 1.25rem 3rem;
+      }
+
+      .detail-hero h1 {
+        font-size: 1.9rem;
+      }
+
+      .detail-header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .brand {
+        font-size: 0.95rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .figure-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <div class="detail-header">
+    <div class="detail-header-inner">
+      <a class="back-link" href="../index.html#projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M11 18l-6-6 6-6"/></svg>
+        Back to portfolio
+      </a>
+      <span class="brand">Moshiur Rahman</span>
+    </div>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="detail-shell">
+
+    <!-- HERO -->
+    <div class="detail-hero">
+      <span class="detail-eyebrow">Academic Project · EEE 412</span>
+      <h1>Adaptive P-Q Control of PV Generators in Microgrids Based on LSTM Forecasting for Enhanced Stability</h1>
+      <div class="detail-tools">
+        <span>MATLAB/Simulink</span>
+        <span>Python</span>
+        <span>LSTM</span>
+        <span>Microgrid Control</span>
+      </div>
+      <p class="overview">
+        Developed an adaptive control strategy using LSTM-based load forecasting for photovoltaic generators,
+        implemented in Simulink to enhance grid stability, power quality, and dynamic response in microgrid
+        applications with high PV penetration.
+      </p>
+    </div>
+
+    <!-- KEY CONTRIBUTIONS -->
+    <div class="detail-section">
+      <h2>Key contributions</h2>
+      <ul class="outcomes">
+        <li>Integrated a deep learning-based LSTM model for accurate short-term load forecasting using historical data from PGCB and DPDC.</li>
+        <li>Designed an enhanced P-Q control algorithm that dynamically adjusts active (P) and reactive (Q) power output of PV inverters based on forecasted load data.</li>
+        <li>Implemented MPPT with Perturb &amp; Observe algorithm and dq-frame current control for grid synchronization and maximum power extraction.</li>
+        <li>Validated the proposed method through MATLAB/Simulink simulations under sudden load changes, PV fluctuations, and grid disturbances.</li>
+        <li>Demonstrated improved voltage and frequency stability, faster response time, and better power quality in the microgrid.</li>
+      </ul>
+    </div>
+
+    <!-- METHODOLOGY & DESIGN -->
+    <div class="detail-section">
+      <h2>Methodology &amp; design</h2>
+      <ul class="outcomes">
+        <li><strong>Data acquisition &amp; preprocessing:</strong> Hourly load and generation data from PGCB (Mar 2021 – Jun 2023) and DPDC (Dec 2006 – Nov 2010) were collected and preprocessed for model training.</li>
+        <li><strong>LSTM load forecasting:</strong> A recurrent neural network with long short-term memory cells was trained to predict short-term load demand using past load values and time-based features.</li>
+        <li><strong>Enhanced P-Q control:</strong> Forecasted load values feed into a dq-frame current controller, adjusting <em>I<sub>d</sub></em> and <em>I<sub>q</sub></em> references to manage active and reactive power injection.</li>
+        <li><strong>MPPT:</strong> Perturb &amp; Observe algorithm tracks the maximum power point of the PV array under varying irradiance and temperature conditions.</li>
+        <li><strong>Clarke &amp; Park transformations:</strong> Three-phase abc quantities are converted to αβ stationary frame and then to dq rotating reference frame for decoupled control.</li>
+      </ul>
+    </div>
+
+    <!-- RESULTS & FIGURES -->
+    <div class="detail-section">
+      <h2>Results &amp; figures</h2>
+      <div class="figure-grid">
+        <div class="figure-card">
+          <div class="fig-placeholder">
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:0.5rem;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <div>Forecast vs Actual Load</div>
+            </div>
+          </div>
+          <div class="fig-caption">
+            <strong>Fig 01:</strong> Hourly comparison of actual and LSTM-predicted load on 25 March 2025, showing close alignment throughout the day.
+          </div>
+        </div>
+        <div class="figure-card">
+          <div class="fig-placeholder">
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:0.5rem;"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 16h8M8 12h8M8 8h5"/></svg>
+              <div>Prediction Errors</div>
+            </div>
+          </div>
+          <div class="fig-caption">
+            <strong>Fig 02:</strong> Distribution of LSTM prediction errors — MAE: 336.83 MW (2.41%), RMSE: 518.46 MW (3.70%) of typical load.
+          </div>
+        </div>
+        <div class="figure-card">
+          <div class="fig-placeholder">
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:0.5rem;"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <div>Three-Phase Voltage</div>
+            </div>
+          </div>
+          <div class="fig-caption">
+            <strong>Fig 05:</strong> Three-phase voltage output from PV array — stable and balanced sinusoidal waveform.
+          </div>
+        </div>
+        <div class="figure-card">
+          <div class="fig-placeholder">
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:0.5rem;"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+              <div>Frequency Response</div>
+            </div>
+          </div>
+          <div class="fig-caption">
+            <strong>Fig 08:</strong> System frequency vs time — damped oscillations and stabilization following load changes.
+          </div>
+        </div>
+        <div class="figure-card">
+          <div class="fig-placeholder">
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:0.5rem;"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+              <div>Real Power Response</div>
+            </div>
+          </div>
+          <div class="fig-caption">
+            <strong>Fig 09:</strong> Real power vs time — damped oscillations and stabilization after a load disturbance.
+          </div>
+        </div>
+        <div class="figure-card">
+          <div class="fig-placeholder">
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:0.5rem;"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg>
+              <div>Microgrid Architecture</div>
+            </div>
+          </div>
+          <div class="fig-caption">
+            <strong>Fig 03:</strong> Architecture of an advanced microgrid controller utilizing synchronized PWM channels for real-time energy management.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTCOMES & EVALUATION -->
+    <div class="detail-section">
+      <h2>Outcomes &amp; evaluation</h2>
+      <ul class="outcomes">
+        <li><strong>Voltage &amp; frequency stability:</strong> Improved under fluctuating irradiance and sudden load changes with the adaptive P-Q control strategy.</li>
+        <li><strong>Tracking accuracy:</strong> LSTM model achieved MAE of 2.41% and RMSE of 3.70% relative to typical load (~14,000 MW).</li>
+        <li><strong>Power quality:</strong> Reduced overshoot and oscillations in real power and frequency response.</li>
+        <li><strong>Responsiveness:</strong> Enhanced dynamic response to grid disturbances in both grid-connected and islanded modes.</li>
+        <li><strong>Sustainability:</strong> Reduces reliance on fossil-fuel backup generators by improving PV utilization and lowering carbon emissions.</li>
+        <li><strong>Responsible AI:</strong> Ensures unbiased forecasting and system transparency without compromising user privacy.</li>
+      </ul>
+    </div>
+
+    <!-- TEAM & ROLES -->
+    <div class="detail-section">
+      <h2>Team &amp; roles</h2>
+      <ul class="outcomes">
+        <li><strong>Md Zobayer Nabil (2006041):</strong> Modeling and simulating the microgrid, evaluating system stability.</li>
+        <li><strong>Sadik Farhan Dipto (2006047):</strong> Data preprocessing, modeling, and testing LSTM-based demand prediction.</li>
+        <li><strong>Emam Al Mahdee (2006048):</strong> Testing and analyzing the system, evaluating prediction performance.</li>
+        <li><strong>Md Kamal Hasan (2006071):</strong> Modeling stability functions and evaluating system stability.</li>
+        <li><strong>Tabassum Shikder Promy (2006086):</strong> Data acquisition and preprocessing, evaluating the system based on P-Q.</li>
+        <li><strong>Moshiur Rahman (2006099):</strong> Enhancing and analyzing the P-Q control of the system.</li>
+      </ul>
+    </div>
+
+    <!-- PROGRAM OUTCOMES -->
+    <div class="detail-section">
+      <h2>Program outcomes addressed</h2>
+      <ul class="outcomes">
+        <li><strong>PO-a:</strong> Apply knowledge of mathematics, science, and engineering — integrates control systems and deep learning for real-world microgrid challenges.</li>
+        <li><strong>PO-b:</strong> Identify, formulate, interpret data, and analyze problems — LSTM forecasting and dynamic P-Q adjustment demonstrate strong problem analysis.</li>
+        <li><strong>PO-d:</strong> Conduct investigations using research-based knowledge — involves machine learning, simulation, and data-driven experimentation.</li>
+        <li><strong>PO-e:</strong> Use modern engineering tools and techniques — implementation requires AI, simulation environments, and adaptive control systems.</li>
+      </ul>
+    </div>
+
+    <!-- GALLERY (placeholders) -->
+    <div class="detail-section">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-tile">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg>
+            Add photo1.jpg
+          </div>
+        </div>
+        <div class="gallery-tile">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg>
+            Add photo2.jpg
+          </div>
+        </div>
+        <div class="gallery-tile">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg>
+            Add photo3.jpg
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILES -->
+    <div class="detail-section">
+      <h2>Files</h2>
+      <div class="file-cards">
+        <a class="file-card" href="assets/pv-lstm-microgrid-slides.pptx">
+          <span class="file-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+          </span>
+          <span>
+            <span class="file-name" style="display:block;">Presentation</span>
+            <span class="file-hint">pv-lstm-microgrid-slides.pptx</span>
+          </span>
+        </a>
+        <a class="file-card" href="assets/pv-lstm-microgrid-report.pdf">
+          <span class="file-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          </span>
+          <span>
+            <span class="file-name" style="display:block;">Project Report</span>
+            <span class="file-hint">pv-lstm-microgrid-report.pdf</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- REFERENCES -->
+    <div class="detail-section">
+      <h2>References</h2>
+      <ul class="outcomes">
+        <li>P-Q and P-V Control of Photovoltaic Generators in Distribution Systems — <em>ResearchGate</em>.</li>
+        <li>IEEE Xplore Document 8861592 — <em>IEEE</em>.</li>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>
