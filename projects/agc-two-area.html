@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Automated Sudoku Solver Using Image Processing in MATLAB — Moshiur Rahman</title>
+<title>Automatic Generation Control in a Two-Area System — Moshiur Rahman</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -92,31 +92,6 @@
   }
   .outcomes li strong{ color:var(--navy); }
 
-  /* Numbered steps */
-  .steps{ display:flex; flex-direction:column; gap:.75rem; counter-reset:step; }
-  .steps li{
-    position:relative; padding-left:2.4rem;
-    font-size:1rem; color:#2c2c2c;
-  }
-  .steps li::before{
-    counter-increment:step; content:counter(step);
-    position:absolute; left:0; top:.1em;
-    width:1.7rem; height:1.7rem;
-    background:var(--brass); color:#fff;
-    border-radius:50%; font-size:.85rem; font-weight:700;
-    display:flex; align-items:center; justify-content:center;
-  }
-
-  /* Code block */
-  .code{
-    display:block; background:var(--navy); color:#E8E5D8;
-    padding:1rem 1.2rem; margin:.75rem 0; border-radius:8px;
-    font-family:'Courier New', monospace; font-size:.85rem;
-    line-height:1.55; overflow-x:auto; border-left:3px solid var(--brass);
-  }
-  .code .kw{ color:#C7A559; }
-  .code .cm{ color:#7a8a99; font-style:italic; }
-
   /* Equation block */
   .eq{
     display:block; background:var(--paper-2); border-left:3px solid var(--brass);
@@ -125,15 +100,23 @@
     color:var(--navy); overflow-x:auto;
   }
 
-  /* Sudoku grid preview */
-  .sudoku-preview{
+  /* Parameters table */
+  .param-table{
+    width:100%; border-collapse:collapse; font-size:.92rem;
     background:#fff; border:1px solid var(--line); border-radius:8px;
-    padding:1.25rem; margin-top:1rem; font-family:'Courier New', monospace;
-    font-size:.95rem; color:var(--navy); text-align:center;
-    letter-spacing:.05em; line-height:2;
-    overflow-x:auto;
+    overflow:hidden; margin-top:.5rem;
   }
-  .sudoku-preview .row{ display:block; }
+  .param-table th{
+    background:var(--navy); color:var(--paper);
+    padding:.65rem .9rem; text-align:left; font-weight:600;
+    font-size:.85rem; letter-spacing:.02em;
+  }
+  .param-table td{
+    padding:.6rem .9rem; border-top:1px solid var(--line);
+    color:#333; vertical-align:top;
+  }
+  .param-table tr:nth-child(even) td{ background:var(--paper-2); }
+  .param-table td strong{ color:var(--navy); }
 
   /* Gallery */
   .gallery-grid{
@@ -225,34 +208,36 @@
 
   <!-- HERO -->
   <div class="detail-hero">
-    <span class="detail-eyebrow">Academic Project · Group 05</span>
-    <h1>Automated Sudoku Solver Using Image Processing in MATLAB</h1>
+    <span class="detail-eyebrow">Academic Project · EEE 306</span>
+    <h1>Automatic Generation Control in a Two-Area Interconnected Power System Using Simulink</h1>
     <div class="detail-tools">
-      <span>MATLAB</span>
-      <span>Image Processing Toolbox</span>
-      <span>OCR</span>
-      <span>Backtracking Algorithm</span>
+      <span>MATLAB/Simulink</span>
+      <span>Load Frequency Control</span>
+      <span>Two-Area AGC</span>
+      <span>Power System Stability</span>
     </div>
     <p class="overview">
-      Built an end-to-end Sudoku solver that reads a puzzle directly from a photograph, extracts the 9×9 digit
-      matrix through classical image-processing techniques (grayscale conversion, binarization, connected-component
-      analysis, and OCR), solves it with a recursive backtracking algorithm, and overlays the solution back onto
-      the original image.
+      Modeled and analyzed a two-area interconnected power system in Simulink to characterize the dynamic
+      inter-dependency between load disturbances, system frequency excursions, and tie-line power deviations.
+      Implemented and evaluated Automatic Generation Control (AGC) with frequency bias and Area Control Error
+      (ACE) under static, step, and variable load conditions.
     </p>
   </div>
 
-  <!-- CONTEXT -->
+  <!-- CONTEXT / MOTIVATION -->
   <div class="detail-section">
-    <h2>Context &amp; motivation</h2>
+    <h2>Context &amp; objectives</h2>
     <p>
-      The project explores how digital images can be treated as 2D signals <em>f(x, y)</em> — sampled and quantized
-      into finite M×N matrices of pixel intensities. It brings together image-processing fundamentals (color-space
-      conversion, binarization, morphological and connectivity operations) with classical AI search (backtracking)
-      to solve a well-defined constraint-satisfaction problem: Sudoku.
+      In an interconnected power system, maintaining the system frequency at its nominal value and keeping
+      the scheduled interchange power between control areas is essential for reliable operation. AGC achieves
+      three primary objectives: holding system frequency at or very close to nominal, maintaining correct
+      interchange power between control areas, and dispatching generation at the most economic value.
     </p>
     <p style="margin-top:1rem;">
-      Rather than manually transcribing a puzzle, the system takes a photo of a printed Sudoku, automatically
-      recognizes the digits, reconstructs the puzzle matrix, and produces a solved, annotated image.
+      This project focused on the case where instability arises from <strong>load variations</strong> — sudden,
+      large changes in power demand that unbalance generation and consumption. Two fundamental feedback loops
+      govern the system: <em>Load Frequency Control (LFC)</em> for active power–frequency balance and
+      <em>Automatic Voltage Regulation (AVR)</em> for reactive power–voltage control.
     </p>
   </div>
 
@@ -260,178 +245,143 @@
   <div class="detail-section">
     <h2>Key contributions</h2>
     <ul class="outcomes">
-      <li>Designed a complete image-to-matrix pipeline: RGB → grayscale → binary, connected-component extraction, grid removal, and cell-wise OCR.</li>
-      <li>Automated extraction of the Sudoku puzzle from a raw photograph by locating the largest 8-connected component and cropping it to the grid boundary.</li>
-      <li>Implemented an OCR step (MATLAB <code>ocr</code> with a digit-only character set) to recognize each cell and build the 9×9 puzzle matrix.</li>
-      <li>Implemented a recursive backtracking solver with row, column, and 3×3 subgrid validity checks.</li>
-      <li>Overlaid solved digits back onto the original image using pixel coordinates derived from cell geometry.</li>
+      <li>Built a complete two-area Simulink model with governor, turbine, rotating mass + load, and ACE-driven integral control blocks for both areas.</li>
+      <li>Derived and implemented the frequency bias factor <em>B<sub>i</sub></em> = 1/<em>R<sub>i</sub></em> + <em>D<sub>i</sub></em> and the Area Control Error <em>ACE<sub>i</sub></em> = ΔP<sub>ij</sub> + B<sub>i</sub>Δω<sub>i</sub> to coordinate control across the tie line.</li>
+      <li>Analyzed five distinct operating scenarios — with and without tie-line coupling, step load changes in Area 1 and Area 2, and variable time-varying load — to isolate the effects of AGC, tie-line support, and disturbance location.</li>
+      <li>Quantified steady-state frequency deviation, settling time, and tie-line power flow to evaluate stability and control effectiveness.</li>
     </ul>
   </div>
 
   <!-- METHODOLOGY -->
   <div class="detail-section">
     <h2>Methodology</h2>
-
-    <h3 style="font-family:'Source Sans 3'; font-size:1rem; font-weight:700; color:var(--navy-2); margin:1.5rem 0 .6rem;">
-      Image processing pipeline
-    </h3>
-    <ol class="steps">
-      <li>Load the colored (RGB) input image.</li>
-      <li>Convert RGB → grayscale → binary using thresholding.</li>
-      <li>Extract the largest connected component (8-connectivity) and level it to isolate the Sudoku grid.</li>
-      <li>Eliminate the grid lines using logical OR with a grid-only image.</li>
-      <li>Split the region of interest into 81 cells; strip 10 boundary pixels per cell for safety.</li>
-      <li>Run OCR on each cell to recognize the digit (0 if empty), then assemble the 9×9 Sudoku matrix.</li>
-    </ol>
-
-    <h3 style="font-family:'Source Sans 3'; font-size:1rem; font-weight:700; color:var(--navy-2); margin:1.5rem 0 .6rem;">
-      Sudoku solving
-    </h3>
-    <ol class="steps">
-      <li>Find the next empty cell in the puzzle.</li>
-      <li>Try digits 1–9 in that cell, checking validity against the row, column, and 3×3 subgrid.</li>
-      <li>Recurse on the updated puzzle. On failure, backtrack and try the next digit.</li>
-      <li>When no empty cells remain, the puzzle is solved.</li>
-    </ol>
-
-    <h3 style="font-family:'Source Sans 3'; font-size:1rem; font-weight:700; color:var(--navy-2); margin:1.5rem 0 .6rem;">
-      Overlay &amp; rendering
-    </h3>
     <p>
-      Solved digits are written back onto the original image with red text and a transparent box, positioned
-      cell-by-cell using <code>subImageWidth</code> and <code>subImageHeight</code> offsets — only for cells that
-      were originally empty.
+      The system was analyzed with the transfer-function (Laplace) approach for the linearized model. Each
+      subsystem was modeled as a first-order transfer function and connected in the standard AGC feedback
+      architecture:
     </p>
-
-    <h3 style="font-family:'Source Sans 3'; font-size:1rem; font-weight:700; color:var(--navy-2); margin:1.5rem 0 .6rem;">
-      Core algorithm — validity check
-    </h3>
-    <pre class="code"><span class="kw">function</span> isvalid = isvalid(matrix, row, col, digit)
-  <span class="cm">% Check row and column</span>
-  <span class="kw">if</span> any(matrix(row, :) == digit) || any(matrix(:, col) == digit)
-    isvalid = false; <span class="kw">return</span>;
-  <span class="kw">end</span>
-  <span class="cm">% Check 3x3 subgrid</span>
-  subgridRowStart = 3 * floor((row - 1) / 3) + 1;
-  subgridColStart = 3 * floor((col - 1) / 3) + 1;
-  subgrid = matrix(subgridRowStart : subgridRowStart + 2, ...
-                   subgridColStart : subgridColStart + 2);
-  <span class="kw">if</span> any(subgrid(:) == digit)
-    isvalid = false; <span class="kw">return</span>;
-  <span class="kw">end</span>
-  isvalid = true;
-<span class="kw">end</span></pre>
+    <ul class="outcomes" style="margin-top:1rem;">
+      <li><strong>Generator (swing equation):</strong> ΔΩ(s) = (1 / (2Hs)) · [ΔP<sub>m</sub>(s) − ΔP<sub>e</sub>(s)].</li>
+      <li><strong>Generator + load:</strong> ΔΩ(s) = (1 / (2Hs + D)) · [ΔP<sub>m</sub>(s) − ΔP<sub>L</sub>(s)].</li>
+      <li><strong>Prime mover (turbine):</strong> G<sub>T</sub>(s) = 1 / (1 + τ<sub>T</sub>s).</li>
+      <li><strong>Speed governor:</strong> G<sub>g</sub>(s) = 1 / (1 + τ<sub>g</sub>s) with droop 1/R feeding back Δω.</li>
+      <li><strong>Integral controller (K<sub>I</sub>/s):</strong> added in the feedback loop to drive Δω to zero in steady state for the isolated single-area case.</li>
+      <li><strong>Tie-line power flow:</strong> ΔP<sub>12</sub> = P<sub>s</sub>(Δδ<sub>1</sub> − Δδ<sub>2</sub>), with synchronizing coefficient P<sub>s</sub>.</li>
+    </ul>
   </div>
 
-  <!-- IMAGE FUNDAMENTALS -->
+  <!-- SYSTEM PARAMETERS -->
   <div class="detail-section">
-    <h2>Image fundamentals applied</h2>
+    <h2>System parameters (1000 MVA base)</h2>
+    <table class="param-table">
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Area 1</th>
+          <th>Area 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Speed regulation, R</strong></td><td>0.05</td><td>0.0625</td></tr>
+        <tr><td><strong>Frequency-sensitive load coefficient, D</strong></td><td>0.6</td><td>0.9</td></tr>
+        <tr><td><strong>Inertia constant, H</strong></td><td>5</td><td>4</td></tr>
+        <tr><td><strong>Governor time constant, T<sub>g</sub></strong></td><td>0.2 s</td><td>0.3 s</td></tr>
+        <tr><td><strong>Turbine time constant, T<sub>t</sub></strong></td><td>0.5 s</td><td>0.6 s</td></tr>
+        <tr><td><strong>Base power</strong></td><td colspan="2">1000 MVA</td></tr>
+        <tr><td><strong>Synchronizing coefficient, P<sub>s</sub></strong></td><td colspan="2">2.0 p.u.</td></tr>
+        <tr><td><strong>Nominal frequency</strong></td><td colspan="2">60 Hz</td></tr>
+        <tr><td><strong>Load disturbance (test case)</strong></td><td colspan="2">ΔP<sub>L1</sub> = 187.5 MW (0.1875 p.u.)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TEST SCENARIOS -->
+  <div class="detail-section">
+    <h2>Test scenarios</h2>
     <ul class="outcomes">
-      <li><strong>Digital image representation:</strong> an image is a 2D signal <em>f(x, y)</em>, sampled in space and quantized in amplitude to produce an M×N matrix of pixel values.</li>
-      <li><strong>Color spaces:</strong> RGB images store three matrices (R, G, B), each 0–255; grayscale stores a single intensity matrix 0–255; binary stores only 0 or 1.</li>
-      <li><strong>Connectivity:</strong> 4-connected and 8-connected component analysis used to isolate the Sudoku grid from the background.</li>
-      <li><strong>Morphological / logical operations:</strong> OR-combining binary masks to suppress grid lines while preserving digits.</li>
-      <li><strong>Resizing:</strong> the cleaned binary image is normalized (e.g. 450×450) so cell boundaries are uniform for OCR.</li>
+      <li><strong>Case 1:</strong> Two-area AGC with sudden load applied in Area 2 — observes coupling via the tie line.</li>
+      <li><strong>Case 2:</strong> Two-area AGC without tie line, load in Area 2 — isolates Area 2 response.</li>
+      <li><strong>Case 3:</strong> Load in Area 1 without tie line — single-area response with integral control.</li>
+      <li><strong>Case 4:</strong> Load in Area 1 with tie line — evaluates cross-area support and ACE coordination.</li>
+      <li><strong>Case 5:</strong> Variable (time-varying) load in Area 1 with tie line — stress-tests the controller under repeated disturbances.</li>
     </ul>
   </div>
 
   <!-- RESULTS -->
   <div class="detail-section">
-    <h2>Results &amp; figures</h2>
+    <h2>Results &amp; observations</h2>
     <p>
-      The pipeline was tested on real photographs of printed Sudoku puzzles. Example — a sample input puzzle
-      and its solved output:
+      Frequency and tie-line power responses were captured for each scenario. Representative results are
+      shown below — frequency deviation settles back to nominal after the initial transient, and tie-line
+      power converges to its scheduled value once the integral controllers drive the ACEs to zero.
     </p>
     <div class="figure-grid">
       <div class="figure-card">
         <div class="fig-placeholder">
           <div>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg>
-            <div>Original RGB Input</div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <div>Frequency · Area 1 (Case 1)</div>
           </div>
         </div>
-        <div class="fig-caption"><strong>Fig 01:</strong> Raw photograph of a printed Sudoku puzzle used as input to the pipeline.</div>
-      </div>
-      <div class="figure-card">
-        <div class="fig-placeholder">
-          <div>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg>
-            <div>Binary Image (bw3)</div>
-          </div>
-        </div>
-        <div class="fig-caption"><strong>Fig 02:</strong> Binarized image after grayscale conversion and thresholding.</div>
-      </div>
-      <div class="figure-card">
-        <div class="fig-placeholder">
-          <div>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg>
-            <div>Cropped &amp; Grid-Removed (bw5)</div>
-          </div>
-        </div>
-        <div class="fig-caption"><strong>Fig 03:</strong> Grid lines removed; digits retained for OCR after resizing to 450×450.</div>
+        <div class="fig-caption"><strong>Fig 01:</strong> Frequency response in Area 1 under a sudden load in Area 2 — transient dip followed by recovery to 60 Hz.</div>
       </div>
       <div class="figure-card">
         <div class="fig-placeholder">
           <div>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            <div>Solved &amp; Overlaid Output</div>
+            <div>Tie-Line Power P<sub>12</sub> (Case 1)</div>
           </div>
         </div>
-        <div class="fig-caption"><strong>Fig 04:</strong> Final output — solved digits rendered in red over the original image, only filling originally empty cells.</div>
+        <div class="fig-caption"><strong>Fig 02:</strong> Tie-line power flow P<sub>12</sub> during the same disturbance — settles to the new scheduled interchange.</div>
       </div>
-    </div>
-
-    <h3 style="font-family:'Source Sans 3'; font-size:1rem; font-weight:700; color:var(--navy-2); margin:2rem 0 .6rem;">
-      Sample puzzle (input)
-    </h3>
-    <div class="sudoku-preview">
-      <span class="row">· · 7 · 5 8 3 · 2 ·</span>
-      <span class="row">· 5 9 2 · · 3 · ·</span>
-      <span class="row">3 4 · · · 6 5 · 7</span>
-      <span class="row">7 9 5 · · · 6 3 2</span>
-      <span class="row">· · 3 6 9 7 1 · ·</span>
-      <span class="row">· 8 · · · 2 7 · ·</span>
-      <span class="row">9 1 4 8 3 5 · 7 6</span>
-      <span class="row">· 3 · 7 · 1 4 9 5</span>
-      <span class="row">5 6 7 4 2 9 · 1 3</span>
-    </div>
-
-    <h3 style="font-family:'Source Sans 3'; font-size:1rem; font-weight:700; color:var(--navy-2); margin:2rem 0 .6rem;">
-      Solved output
-    </h3>
-    <div class="sudoku-preview">
-      <span class="row">3 1 7 4 6 9 5 2 8</span>
-      <span class="row">8 2 6 3 7 5 9 1 4</span>
-      <span class="row">4 9 5 8 1 2 7 6 3</span>
-      <span class="row">1 4 9 7 8 6 3 5 2</span>
-      <span class="row">6 8 2 5 4 3 1 7 9</span>
-      <span class="row">7 5 3 9 2 1 8 4 6</span>
-      <span class="row">2 3 4 1 9 7 6 8 5</span>
-      <span class="row">5 6 1 2 3 8 4 9 7</span>
-      <span class="row">9 7 8 6 5 4 2 3 1</span>
+      <div class="figure-card">
+        <div class="fig-placeholder">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <div>Frequency · Area 1 (Case 4)</div>
+          </div>
+        </div>
+        <div class="fig-caption"><strong>Fig 03:</strong> Frequency in Area 1 with tie line under a step load in Area 1 — damped recovery with improved settling time.</div>
+      </div>
+      <div class="figure-card">
+        <div class="fig-placeholder">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+            <div>Variable Load Response (Case 5)</div>
+          </div>
+        </div>
+        <div class="fig-caption"><strong>Fig 04:</strong> Frequency deviation under time-varying load — repeated excursions with bounded peaks and recovery after each event.</div>
+      </div>
+      <div class="figure-card">
+        <div class="fig-placeholder">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+            <div>Variable Tie-Line Power (Case 5)</div>
+          </div>
+        </div>
+        <div class="fig-caption"><strong>Fig 05:</strong> Tie-line power under variable load — smooth tracking of the scheduled interchange after each perturbation.</div>
+      </div>
+      <div class="figure-card">
+        <div class="fig-placeholder">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg>
+            <div>Two-Area AGC Block Diagram</div>
+          </div>
+        </div>
+        <div class="fig-caption"><strong>Fig 06:</strong> Simulink implementation of the two-area AGC block diagram with frequency bias, ACE, and integral control.</div>
+      </div>
     </div>
   </div>
 
-  <!-- OUTCOMES & EVALUATION -->
+  <!-- OUTCOMES / EVALUATION -->
   <div class="detail-section">
     <h2>Outcomes &amp; evaluation</h2>
     <ul class="outcomes">
-      <li><strong>End-to-end automation:</strong> from a photograph to a solved, annotated image with no manual digit entry.</li>
-      <li><strong>Robust extraction:</strong> largest connected-component + grid-removal reliably isolates the puzzle from background clutter.</li>
-      <li><strong>OCR accuracy:</strong> digit-only character set ('0123456789') with 'Word' text layout yields accurate recognition on clean, printed puzzles.</li>
-      <li><strong>Correctness of solver:</strong> backtracking with row/column/subgrid validity produces a unique correct solution for standard Sudoku puzzles.</li>
-      <li><strong>Clean visualization:</strong> overlay writes only into originally empty cells, so the solved digits are visually distinguishable from the given clues.</li>
-    </ul>
-  </div>
-
-  <!-- LIMITATIONS -->
-  <div class="detail-section">
-    <h2>Limitations &amp; future work</h2>
-    <ul class="outcomes">
-      <li>OCR performance degrades on heavily skewed, low-resolution, or hand-written Sudoku inputs.</li>
-      <li>Assumes a single, well-framed Sudoku grid occupies the largest connected component of the image.</li>
-      <li>Robustness could be improved with adaptive thresholding, perspective correction, and a CNN-based digit classifier.</li>
-      <li>The solver could be extended to detect and report invalid or multi-solution puzzles.</li>
+      <li><strong>Frequency regulation:</strong> Integral control in the AGC loop drives steady-state frequency deviation to zero after each disturbance.</li>
+      <li><strong>Tie-line coordination:</strong> Frequency bias factors B<sub>1</sub> and B<sub>2</sub> correctly allocate the disturbance response between the two areas via ACE.</li>
+      <li><strong>Effect of tie line:</strong> Presence of the tie line significantly reduces peak frequency deviation and shortens settling time compared to isolated operation.</li>
+      <li><strong>Variable-load robustness:</strong> The controller maintains bounded frequency excursions and returns to scheduled interchange under repeated disturbances.</li>
+      <li><strong>Analytical validation:</strong> Simulation results align with the analytical steady-state values derived from the transfer-function model.</li>
     </ul>
   </div>
 
@@ -439,14 +389,14 @@
   <div class="detail-section">
     <h2>Team &amp; roles</h2>
     <ul class="outcomes">
-      <li><strong>Moshiur Rahman (2006099):</strong> Image-processing pipeline and OCR integration.</li>
-      <li><strong>Shahriar Rashid Khan (2006117):</strong> Sudoku solving algorithm and validity checks.</li>
-      <li><strong>Sifat (2006118):</strong> Cell extraction and matrix assembly.</li>
-      <li><strong>Tanvir Arafat Fahim (2006121):</strong> Overlay rendering and visual output.</li>
-      <li><strong>Md. Sazidur Rahman (2006121):</strong> Testing and evaluation across puzzle samples.</li>
+      <li><strong>Moshiur Rahman (2006099):</strong> Modeling the two-area AGC system and evaluating stability.</li>
+      <li><strong>Sabbir Mahmud (2006104):</strong> Governor and turbine block implementation.</li>
+      <li><strong>Sahriar Rashid Khan (2006117):</strong> Frequency bias and ACE design.</li>
+      <li><strong>Tanvir Arafat Fahim (2006118):</strong> Simulation scenarios and data capture.</li>
+      <li><strong>Md. Sazidur Rahman (2006121):</strong> Analysis of results and comparison across cases.</li>
     </ul>
     <p style="margin-top:1rem; font-size:.95rem; color:#555;">
-      Course: EEE 306 · Instructors: Dr. Maruf Ahmed (Assistant Professor) and Abdullah Jubair Bin Iqbal (Lecturer), Dept. of EEE, BUET.
+      Course: EEE 306 — Power System I Lab · Instructors: Iftekharul Islam Emon, Lecturer, Dept. of EEE, BUET.
     </p>
   </div>
 
@@ -479,22 +429,22 @@
   <div class="detail-section">
     <h2>Files</h2>
     <div class="file-cards">
-      <a class="file-card" href="../assets/sudoku-solver-slides.pptx">
+      <a class="file-card" href="../assets/agc-two-area-slides.pptx">
         <span class="file-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
         </span>
         <span>
           <span class="file-name">Presentation</span>
-          <span class="file-hint">sudoku-solver-slides.pptx</span>
+          <span class="file-hint">agc-two-area-slides.pptx</span>
         </span>
       </a>
-      <a class="file-card" href="../assets/sudoku-solver-report.pdf">
+      <a class="file-card" href="../assets/agc-two-area-report.pdf">
         <span class="file-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
         </span>
         <span>
           <span class="file-name">Project Report</span>
-          <span class="file-hint">sudoku-solver-report.pdf</span>
+          <span class="file-hint">agc-two-area-report.pdf</span>
         </span>
       </a>
     </div>
