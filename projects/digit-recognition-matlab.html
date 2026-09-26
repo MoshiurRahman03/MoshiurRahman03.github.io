@@ -3,11 +3,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digit Recognition Using Image Processing in MATLAB — Moshiur Rahman</title>
+<title>Automated Sudoku Solver Using Image Processing in MATLAB — Moshiur Rahman</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css">
+<style>
+  :root{
+    --navy:#16232F; --navy-2:#1F3245;
+    --paper:#F1EFE6; --paper-2:#E8E5D8;
+    --ink:#1A1D1B; --brass:#9C7A34; --brass-soft:#C7A559;
+    --line: rgba(26,29,27,0.14);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:'Source Sans 3', sans-serif; font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; line-height:1.18; color:var(--navy); }
+  a{ color:inherit; }
+  p{ margin:0 0 1em 0; max-width:70ch; }
+  ul{ margin:0; padding:0; list-style:none; }
+  em{ font-style:italic; }
+
+  /* Header */
+  .detail-header{
+    background:var(--navy); color:var(--paper);
+    padding:1rem 2rem; position:sticky; top:0; z-index:100;
+    box-shadow:0 2px 14px rgba(0,0,0,0.12);
+  }
+  .detail-header-inner{
+    max-width:1000px; margin:0 auto;
+    display:flex; justify-content:space-between; align-items:center; gap:1rem;
+  }
+  .back-link{
+    display:inline-flex; align-items:center; gap:.5rem;
+    color:var(--paper); text-decoration:none; font-weight:600; font-size:.95rem;
+    opacity:.9; transition:opacity .2s;
+  }
+  .back-link:hover{ opacity:1; color:var(--brass-soft); }
+  .back-link svg{ width:18px; height:18px; }
+  .brand{ font-family:'Fraunces',serif; font-weight:500; font-size:1.05rem; }
+
+  /* Shell */
+  .detail-shell{ max-width:900px; margin:0 auto; padding:3rem 2rem 5rem; }
+
+  /* Hero */
+  .detail-hero{ margin-bottom:3rem; }
+  .detail-eyebrow{
+    display:inline-block; font-size:.78rem; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase;
+    color:var(--brass); background:var(--paper-2);
+    padding:.35rem 1rem; border-radius:100px; margin-bottom:1rem;
+    border:1px solid var(--line);
+  }
+  .detail-hero h1{
+    font-size:2.4rem; font-weight:600; letter-spacing:-.02em;
+    margin-bottom:1.25rem; color:var(--navy);
+  }
+  .detail-tools{ display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.5rem; }
+  .detail-tools span{
+    background:var(--paper-2); color:var(--navy-2);
+    font-size:.8rem; font-weight:600;
+    padding:.35rem .9rem; border-radius:100px;
+    border:1px solid var(--line);
+  }
+  .overview{ font-size:1.12rem; color:#333; max-width:70ch; line-height:1.7; }
+
+  /* Sections */
+  .detail-section{ margin-bottom:3rem; }
+  .detail-section h2{
+    font-size:1.5rem; font-weight:600; color:var(--navy);
+    margin-bottom:1.1rem; padding-bottom:.55rem;
+    border-bottom:2px solid var(--brass);
+    letter-spacing:-.01em;
+  }
+  .detail-section p{ font-size:1rem; color:#2c2c2c; }
+
+  /* Outcomes */
+  .outcomes{ display:flex; flex-direction:column; gap:.85rem; }
+  .outcomes li{
+    position:relative; padding-left:1.75rem;
+    font-size:1rem; color:#2c2c2c;
+  }
+  .outcomes li::before{
+    content:""; position:absolute; left:0; top:.6em;
+    width:8px; height:8px; background:var(--brass); border-radius:50%;
+  }
+  .outcomes li strong{ color:var(--navy); }
+
+  /* Numbered steps */
+  .steps{ display:flex; flex-direction:column; gap:.75rem; counter-reset:step; }
+  .steps li{
+    position:relative; padding-left:2.4rem;
+    font-size:1rem; color:#2c2c2c;
+  }
+  .steps li::before{
+    counter-increment:step; content:counter(step);
+    position:absolute; left:0; top:.1em;
+    width:1.7rem; height:1.7rem;
+    background:var(--brass); color:#fff;
+    border-radius:50%; font-size:.85rem; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* Code block */
+  .code{
+    display:block; background:var(--navy); color:#E8E5D8;
+    padding:1rem 1.2rem; margin:.75rem 0; border-radius:8px;
+    font-family:'Courier New', monospace; font-size:.85rem;
+    line-height:1.55; overflow-x:auto; border-left:3px solid var(--brass);
+  }
+  .code .kw{ color:#C7A559; }
+  .code .cm{ color:#7a8a99; font-style:italic; }
+
+  /* Equation block */
+  .eq{
+    display:block; background:var(--paper-2); border-left:3px solid var(--brass);
+    padding:.85rem 1.2rem; margin:.75rem 0; border-radius:0 6px 6px 0;
+    font-family:'Fraunces', serif; font-style:italic; font-size:1.02rem;
+    color:var(--navy); overflow-x:auto;
+  }
+
+  /* Sudoku grid preview */
+  .sudoku-preview{
+    background:#fff; border:1px solid var(--line); border-radius:8px;
+    padding:1.25rem; margin-top:1rem; font-family:'Courier New', monospace;
+    font-size:.95rem; color:var(--navy); text-align:center;
+    letter-spacing:.05em; line-height:2;
+    overflow-x:auto;
+  }
+  .sudoku-preview .row{ display:block; }
+
+  /* Gallery */
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:1rem;
+  }
+  .gallery-tile{
+    background:var(--paper-2); border:1.5px dashed rgba(156,122,52,0.4);
+    border-radius:10px; aspect-ratio:4/3;
+    display:flex; align-items:center; justify-content:center;
+    padding:1.5rem; text-align:center;
+    color:var(--brass); font-size:.9rem; font-weight:600;
+    transition:background .2s, border-color .2s;
+  }
+  .gallery-tile:hover{ background:#e4dcd3; border-color:var(--brass); }
+  .gallery-tile svg{ width:28px; height:28px; display:block; margin:0 auto .5rem; }
+
+  /* Figure grid */
+  .figure-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem; margin-top:1rem;
+  }
+  .figure-card{
+    background:#fff; border:1px solid var(--line);
+    border-radius:10px; overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .figure-card:hover{ box-shadow:0 6px 22px rgba(0,0,0,.07); }
+  .fig-placeholder{
+    background:var(--paper-2); aspect-ratio:16/10;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--brass); font-size:.85rem; font-weight:600;
+    border-bottom:1px solid var(--line);
+    text-align:center; padding:1rem;
+  }
+  .fig-caption{
+    padding:.9rem 1rem; font-size:.85rem; color:#555; line-height:1.5;
+  }
+  .fig-caption strong{ color:var(--navy); font-weight:700; }
+
+  /* Files */
+  .file-cards{ display:flex; flex-wrap:wrap; gap:1rem; }
+  .file-card{
+    flex:1 1 240px; display:flex; align-items:center; gap:.85rem;
+    background:#fff; border:1px solid var(--line); border-radius:10px;
+    padding:1rem 1.25rem; text-decoration:none; color:var(--ink);
+    transition:border-color .2s, box-shadow .2s, transform .15s;
+  }
+  .file-card:hover{
+    border-color:var(--brass);
+    box-shadow:0 4px 16px rgba(156,122,52,.12);
+    transform:translateY(-1px);
+  }
+  .file-icon{
+    flex-shrink:0; width:42px; height:42px;
+    background:var(--paper-2); border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--brass);
+  }
+  .file-icon svg{ width:20px; height:20px; }
+  .file-name{ font-weight:700; font-size:.95rem; display:block; color:var(--navy); }
+  .file-hint{ font-size:.8rem; color:#777; }
+
+  /* Responsive */
+  @media (max-width:640px){
+    .detail-shell{ padding:2rem 1.25rem 3rem; }
+    .detail-hero h1{ font-size:1.85rem; }
+    .detail-header-inner{ flex-direction:column; align-items:flex-start; gap:.4rem; }
+    .gallery-grid{ grid-template-columns:1fr 1fr; }
+    .figure-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:400px){
+    .gallery-grid{ grid-template-columns:1fr; }
+  }
+</style>
 </head>
 <body>
 
@@ -22,26 +222,235 @@
 </div>
 
 <div class="detail-shell">
+
+  <!-- HERO -->
   <div class="detail-hero">
-    <span class="detail-eyebrow">Academic Project</span>
-    <h1>Digit Recognition Using Image Processing in MATLAB</h1>
+    <span class="detail-eyebrow">Academic Project · Group 05</span>
+    <h1>Automated Sudoku Solver Using Image Processing in MATLAB</h1>
     <div class="detail-tools">
       <span>MATLAB</span>
       <span>Image Processing Toolbox</span>
-      <span>CNN</span>
+      <span>OCR</span>
+      <span>Backtracking Algorithm</span>
     </div>
-    <p class="overview">Built a machine learning-based digit recognition system in MATLAB, implementing feature extraction, preprocessing, and CNN-based classification for handwritten digits.</p>
+    <p class="overview">
+      Built an end-to-end Sudoku solver that reads a puzzle directly from a photograph, extracts the 9×9 digit
+      matrix through classical image-processing techniques (grayscale conversion, binarization, connected-component
+      analysis, and OCR), solves it with a recursive backtracking algorithm, and overlays the solution back onto
+      the original image.
+    </p>
   </div>
 
+  <!-- CONTEXT -->
+  <div class="detail-section">
+    <h2>Context &amp; motivation</h2>
+    <p>
+      The project explores how digital images can be treated as 2D signals <em>f(x, y)</em> — sampled and quantized
+      into finite M×N matrices of pixel intensities. It brings together image-processing fundamentals (color-space
+      conversion, binarization, morphological and connectivity operations) with classical AI search (backtracking)
+      to solve a well-defined constraint-satisfaction problem: Sudoku.
+    </p>
+    <p style="margin-top:1rem;">
+      Rather than manually transcribing a puzzle, the system takes a photo of a printed Sudoku, automatically
+      recognizes the digits, reconstructs the puzzle matrix, and produces a solved, annotated image.
+    </p>
+  </div>
+
+  <!-- KEY CONTRIBUTIONS -->
   <div class="detail-section">
     <h2>Key contributions</h2>
     <ul class="outcomes">
-      <li>Preprocessed handwritten digit images and extracted relevant features in MATLAB.</li>
-      <li>Trained a CNN-based classifier for digit recognition.</li>
-      <li>Evaluated classification accuracy on test samples.</li>
+      <li>Designed a complete image-to-matrix pipeline: RGB → grayscale → binary, connected-component extraction, grid removal, and cell-wise OCR.</li>
+      <li>Automated extraction of the Sudoku puzzle from a raw photograph by locating the largest 8-connected component and cropping it to the grid boundary.</li>
+      <li>Implemented an OCR step (MATLAB <code>ocr</code> with a digit-only character set) to recognize each cell and build the 9×9 puzzle matrix.</li>
+      <li>Implemented a recursive backtracking solver with row, column, and 3×3 subgrid validity checks.</li>
+      <li>Overlaid solved digits back onto the original image using pixel coordinates derived from cell geometry.</li>
     </ul>
   </div>
 
+  <!-- METHODOLOGY -->
+  <div class="detail-section">
+    <h2>Methodology</h2>
+
+    <h3 style="font-family:'Source Sans 3'; font-size:1rem; font-weight:700; color:var(--navy-2); margin:1.5rem 0 .6rem;">
+      Image processing pipeline
+    </h3>
+    <ol class="steps">
+      <li>Load the colored (RGB) input image.</li>
+      <li>Convert RGB → grayscale → binary using thresholding.</li>
+      <li>Extract the largest connected component (8-connectivity) and level it to isolate the Sudoku grid.</li>
+      <li>Eliminate the grid lines using logical OR with a grid-only image.</li>
+      <li>Split the region of interest into 81 cells; strip 10 boundary pixels per cell for safety.</li>
+      <li>Run OCR on each cell to recognize the digit (0 if empty), then assemble the 9×9 Sudoku matrix.</li>
+    </ol>
+
+    <h3 style="font-family:'Source Sans 3'; font-size:1rem; font-weight:700; color:var(--navy-2); margin:1.5rem 0 .6rem;">
+      Sudoku solving
+    </h3>
+    <ol class="steps">
+      <li>Find the next empty cell in the puzzle.</li>
+      <li>Try digits 1–9 in that cell, checking validity against the row, column, and 3×3 subgrid.</li>
+      <li>Recurse on the updated puzzle. On failure, backtrack and try the next digit.</li>
+      <li>When no empty cells remain, the puzzle is solved.</li>
+    </ol>
+
+    <h3 style="font-family:'Source Sans 3'; font-size:1rem; font-weight:700; color:var(--navy-2); margin:1.5rem 0 .6rem;">
+      Overlay &amp; rendering
+    </h3>
+    <p>
+      Solved digits are written back onto the original image with red text and a transparent box, positioned
+      cell-by-cell using <code>subImageWidth</code> and <code>subImageHeight</code> offsets — only for cells that
+      were originally empty.
+    </p>
+
+    <h3 style="font-family:'Source Sans 3'; font-size:1rem; font-weight:700; color:var(--navy-2); margin:1.5rem 0 .6rem;">
+      Core algorithm — validity check
+    </h3>
+    <pre class="code"><span class="kw">function</span> isvalid = isvalid(matrix, row, col, digit)
+  <span class="cm">% Check row and column</span>
+  <span class="kw">if</span> any(matrix(row, :) == digit) || any(matrix(:, col) == digit)
+    isvalid = false; <span class="kw">return</span>;
+  <span class="kw">end</span>
+  <span class="cm">% Check 3x3 subgrid</span>
+  subgridRowStart = 3 * floor((row - 1) / 3) + 1;
+  subgridColStart = 3 * floor((col - 1) / 3) + 1;
+  subgrid = matrix(subgridRowStart : subgridRowStart + 2, ...
+                   subgridColStart : subgridColStart + 2);
+  <span class="kw">if</span> any(subgrid(:) == digit)
+    isvalid = false; <span class="kw">return</span>;
+  <span class="kw">end</span>
+  isvalid = true;
+<span class="kw">end</span></pre>
+  </div>
+
+  <!-- IMAGE FUNDAMENTALS -->
+  <div class="detail-section">
+    <h2>Image fundamentals applied</h2>
+    <ul class="outcomes">
+      <li><strong>Digital image representation:</strong> an image is a 2D signal <em>f(x, y)</em>, sampled in space and quantized in amplitude to produce an M×N matrix of pixel values.</li>
+      <li><strong>Color spaces:</strong> RGB images store three matrices (R, G, B), each 0–255; grayscale stores a single intensity matrix 0–255; binary stores only 0 or 1.</li>
+      <li><strong>Connectivity:</strong> 4-connected and 8-connected component analysis used to isolate the Sudoku grid from the background.</li>
+      <li><strong>Morphological / logical operations:</strong> OR-combining binary masks to suppress grid lines while preserving digits.</li>
+      <li><strong>Resizing:</strong> the cleaned binary image is normalized (e.g. 450×450) so cell boundaries are uniform for OCR.</li>
+    </ul>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="detail-section">
+    <h2>Results &amp; figures</h2>
+    <p>
+      The pipeline was tested on real photographs of printed Sudoku puzzles. Example — a sample input puzzle
+      and its solved output:
+    </p>
+    <div class="figure-grid">
+      <div class="figure-card">
+        <div class="fig-placeholder">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg>
+            <div>Original RGB Input</div>
+          </div>
+        </div>
+        <div class="fig-caption"><strong>Fig 01:</strong> Raw photograph of a printed Sudoku puzzle used as input to the pipeline.</div>
+      </div>
+      <div class="figure-card">
+        <div class="fig-placeholder">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg>
+            <div>Binary Image (bw3)</div>
+          </div>
+        </div>
+        <div class="fig-caption"><strong>Fig 02:</strong> Binarized image after grayscale conversion and thresholding.</div>
+      </div>
+      <div class="figure-card">
+        <div class="fig-placeholder">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg>
+            <div>Cropped &amp; Grid-Removed (bw5)</div>
+          </div>
+        </div>
+        <div class="fig-caption"><strong>Fig 03:</strong> Grid lines removed; digits retained for OCR after resizing to 450×450.</div>
+      </div>
+      <div class="figure-card">
+        <div class="fig-placeholder">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;margin-bottom:.5rem;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <div>Solved &amp; Overlaid Output</div>
+          </div>
+        </div>
+        <div class="fig-caption"><strong>Fig 04:</strong> Final output — solved digits rendered in red over the original image, only filling originally empty cells.</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Source Sans 3'; font-size:1rem; font-weight:700; color:var(--navy-2); margin:2rem 0 .6rem;">
+      Sample puzzle (input)
+    </h3>
+    <div class="sudoku-preview">
+      <span class="row">· · 7 · 5 8 3 · 2 ·</span>
+      <span class="row">· 5 9 2 · · 3 · ·</span>
+      <span class="row">3 4 · · · 6 5 · 7</span>
+      <span class="row">7 9 5 · · · 6 3 2</span>
+      <span class="row">· · 3 6 9 7 1 · ·</span>
+      <span class="row">· 8 · · · 2 7 · ·</span>
+      <span class="row">9 1 4 8 3 5 · 7 6</span>
+      <span class="row">· 3 · 7 · 1 4 9 5</span>
+      <span class="row">5 6 7 4 2 9 · 1 3</span>
+    </div>
+
+    <h3 style="font-family:'Source Sans 3'; font-size:1rem; font-weight:700; color:var(--navy-2); margin:2rem 0 .6rem;">
+      Solved output
+    </h3>
+    <div class="sudoku-preview">
+      <span class="row">3 1 7 4 6 9 5 2 8</span>
+      <span class="row">8 2 6 3 7 5 9 1 4</span>
+      <span class="row">4 9 5 8 1 2 7 6 3</span>
+      <span class="row">1 4 9 7 8 6 3 5 2</span>
+      <span class="row">6 8 2 5 4 3 1 7 9</span>
+      <span class="row">7 5 3 9 2 1 8 4 6</span>
+      <span class="row">2 3 4 1 9 7 6 8 5</span>
+      <span class="row">5 6 1 2 3 8 4 9 7</span>
+      <span class="row">9 7 8 6 5 4 2 3 1</span>
+    </div>
+  </div>
+
+  <!-- OUTCOMES & EVALUATION -->
+  <div class="detail-section">
+    <h2>Outcomes &amp; evaluation</h2>
+    <ul class="outcomes">
+      <li><strong>End-to-end automation:</strong> from a photograph to a solved, annotated image with no manual digit entry.</li>
+      <li><strong>Robust extraction:</strong> largest connected-component + grid-removal reliably isolates the puzzle from background clutter.</li>
+      <li><strong>OCR accuracy:</strong> digit-only character set ('0123456789') with 'Word' text layout yields accurate recognition on clean, printed puzzles.</li>
+      <li><strong>Correctness of solver:</strong> backtracking with row/column/subgrid validity produces a unique correct solution for standard Sudoku puzzles.</li>
+      <li><strong>Clean visualization:</strong> overlay writes only into originally empty cells, so the solved digits are visually distinguishable from the given clues.</li>
+    </ul>
+  </div>
+
+  <!-- LIMITATIONS -->
+  <div class="detail-section">
+    <h2>Limitations &amp; future work</h2>
+    <ul class="outcomes">
+      <li>OCR performance degrades on heavily skewed, low-resolution, or hand-written Sudoku inputs.</li>
+      <li>Assumes a single, well-framed Sudoku grid occupies the largest connected component of the image.</li>
+      <li>Robustness could be improved with adaptive thresholding, perspective correction, and a CNN-based digit classifier.</li>
+      <li>The solver could be extended to detect and report invalid or multi-solution puzzles.</li>
+    </ul>
+  </div>
+
+  <!-- TEAM -->
+  <div class="detail-section">
+    <h2>Team &amp; roles</h2>
+    <ul class="outcomes">
+      <li><strong>Moshiur Rahman (2006099):</strong> Image-processing pipeline and OCR integration.</li>
+      <li><strong>Shahriar Rashid Khan (2006117):</strong> Sudoku solving algorithm and validity checks.</li>
+      <li><strong>Sifat (2006118):</strong> Cell extraction and matrix assembly.</li>
+      <li><strong>Tanvir Arafat Fahim (2006121):</strong> Overlay rendering and visual output.</li>
+      <li><strong>Md. Sazidur Rahman (2006121):</strong> Testing and evaluation across puzzle samples.</li>
+    </ul>
+    <p style="margin-top:1rem; font-size:.95rem; color:#555;">
+      Course: EEE 306 · Instructors: Dr. Maruf Ahmed (Assistant Professor) and Abdullah Jubair Bin Iqbal (Lecturer), Dept. of EEE, BUET.
+    </p>
+  </div>
+
+  <!-- GALLERY -->
   <div class="detail-section">
     <h2>Gallery</h2>
     <div class="gallery-grid">
@@ -66,25 +475,31 @@
     </div>
   </div>
 
+  <!-- FILES -->
   <div class="detail-section">
     <h2>Files</h2>
     <div class="file-cards">
-      <a class="file-card" href="assets/digit-recognition-matlab-slides.pptx">
-        <span class="file-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+      <a class="file-card" href="../assets/sudoku-solver-slides.pptx">
+        <span class="file-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+        </span>
         <span>
-          <span class="file-name" style="display:block;">Presentation</span>
-          <span class="file-hint">digit-recognition-matlab-slides.pptx</span>
+          <span class="file-name">Presentation</span>
+          <span class="file-hint">sudoku-solver-slides.pptx</span>
         </span>
       </a>
-      <a class="file-card" href="assets/digit-recognition-matlab-report.pdf">
-        <span class="file-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+      <a class="file-card" href="../assets/sudoku-solver-report.pdf">
+        <span class="file-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        </span>
         <span>
-          <span class="file-name" style="display:block;">Project Report</span>
-          <span class="file-hint">digit-recognition-matlab-report.pdf</span>
+          <span class="file-name">Project Report</span>
+          <span class="file-hint">sudoku-solver-report.pdf</span>
         </span>
       </a>
     </div>
   </div>
+
 </div>
 
 </body>
