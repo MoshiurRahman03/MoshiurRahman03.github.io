@@ -61,7 +61,7 @@ details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
   .rail-top h1{ color:var(--paper); font-size:26px; margin-bottom:4px; }
   .rail-top .role{ font-size:14px; color:rgba(241,239,230,0.68); margin-bottom:30px; max-width:22ch; }
 
-  .rail nav ul{ display:flex; flex-direction:column; gap:1px; }
+  .rail nav ul{ display:flex; flex-direction:column; gap:4px; } /* Changed from 1px to 4px */
   .rail nav button{
     all:unset; cursor:pointer;
     display:flex; align-items:center; gap:11px;
@@ -88,7 +88,7 @@ details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
   .rail nav a.dl:hover{ color:var(--paper); }
   .rail nav a.dl svg{ width:16px; height:16px; opacity:.85; }
 
-  .rail-bottom{ display:flex; gap:14px; }
+  .rail-bottom{ display:flex; gap:14px; margin-top: auto; padding-top: 20px; }
   .rail-bottom a{ opacity:.65; transition:opacity .15s; }
   .rail-bottom a:hover{ opacity:1; }
   .rail-bottom svg{ width:18px; height:18px; }
