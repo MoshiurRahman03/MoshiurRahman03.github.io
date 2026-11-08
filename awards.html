@@ -41,7 +41,58 @@
   .panel{ display:block; }
   .edu-block .school{ font-family:'Fraunces',serif; font-size:22px; color:var(--navy); margin-bottom:2px; }
   .edu-block .meta{ font-size:14.5px; color:#555; margin-bottom:20px; }
+    /* --- PROFESSIONAL AWARDS GRID --- */
+  .awards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 10px;
+  }
+  .award-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--brass); /* The professional brass accent */
+    padding: 24px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .award-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .award-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .award-issuer {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .award-year {
+    font-size: 13px;
+    color: var(--brass);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .award-desc {
+    font-size: 15px;
+    color: #333;
+    margin: 0;
+    line-height: 1.6;
+  }
 
+  /* Mobile responsiveness */
+  @media (max-width: 880px) {
+    .awards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
   /* Mobile */
   .mobile-nav{ display:none; }
   @media (max-width: 880px){
@@ -105,13 +156,41 @@
       <!-- Fixed: Removed invalid span wrapper -->
       <h2 style="border-bottom: 3px solid #000000; padding-bottom: 5px; display: inline-block; margin-bottom: 26px;">Awards and Honors</h2>
       
-      <div class="edu-block">
+            <div class="awards-grid">
         
-        <!-- START COPYING AWARDS HERE -->
-        <div class="school">Award Name or Scholarship Title</div>
-        <div class="meta">Awarding Institution · Year</div>
-        <p>Short description of why you received it.</p>
-        <br>
+        <!-- Award 1 -->
+        <div class="award-card">
+          <div class="award-year">2023</div>
+          <div class="award-title">Best Undergraduate Thesis Award</div>
+          <div class="award-issuer">Department of EEE, BUET</div>
+          <p class="award-desc">Awarded for outstanding research in privacy-preserving machine learning frameworks for smart grids.</p>
+        </div>
+
+        <!-- Award 2 -->
+        <div class="award-card">
+          <div class="award-year">2022</div>
+          <div class="award-title">Merit-Based Academic Scholarship</div>
+          <div class="award-issuer">Bangladesh University of Engineering and Technology</div>
+          <p class="award-desc">Awarded to the top 5% of the undergraduate engineering cohort for maintaining an exceptional CGPA.</p>
+        </div>
+
+        <!-- Award 3 -->
+        <div class="award-card">
+          <div class="award-year">2021</div>
+          <div class="award-title">1st Place - National Robotics Challenge</div>
+          <div class="award-issuer">IEEE Bangladesh Section</div>
+          <p class="award-desc">Led a team of 4 to design and program a 6-DOF autonomous robotic arm for assistive navigation.</p>
+        </div>
+
+        <!-- Award 4 -->
+        <div class="award-card">
+          <div class="award-year">2020</div>
+          <div class="award-title">Technical Excellence Grant</div>
+          <div class="award-issuer">University Research Fund</div>
+          <p class="award-desc">Received a grant to develop an adaptive P-Q control testbed for microgrids using MATLAB/Simulink.</p>
+        </div>
+
+      </div>
         <!-- END COPYING AWARDS HERE -->
 
       </div>
