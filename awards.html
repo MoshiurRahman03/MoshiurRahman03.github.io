@@ -39,9 +39,8 @@
   /* Main Content */
   main{ flex:1; min-width:0; padding:56px 60px 90px; }
   .panel{ display:block; }
-  .edu-block .school{ font-family:'Fraunces',serif; font-size:22px; color:var(--navy); margin-bottom:2px; }
-  .edu-block .meta{ font-size:14.5px; color:#555; margin-bottom:20px; }
-    /* --- PROFESSIONAL AWARDS GRID --- */
+  
+  /* --- PROFESSIONAL AWARDS GRID --- */
   .awards-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -51,13 +50,20 @@
   .award-card {
     background: #ffffff;
     border: 1px solid var(--line);
-    border-left: 4px solid var(--brass); /* The professional brass accent */
+    border-left: 4px solid var(--brass); 
     padding: 24px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .award-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .award-year {
+    font-size: 13px;
+    color: var(--brass);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
   }
   .award-title {
     font-family: 'Fraunces', serif;
@@ -70,15 +76,8 @@
   .award-issuer {
     font-size: 14px;
     color: #555;
-    margin-bottom: 4px;
-    font-weight: 500;
-  }
-  .award-year {
-    font-size: 13px;
-    color: var(--brass);
-    font-weight: 700;
-    letter-spacing: 0.05em;
     margin-bottom: 12px;
+    font-weight: 500;
   }
   .award-desc {
     font-size: 15px;
@@ -87,12 +86,6 @@
     line-height: 1.6;
   }
 
-  /* Mobile responsiveness */
-  @media (max-width: 880px) {
-    .awards-grid {
-      grid-template-columns: 1fr;
-    }
-  }
   /* Mobile */
   .mobile-nav{ display:none; }
   @media (max-width: 880px){
@@ -100,6 +93,7 @@
     .rail{ position:relative; width:100%; flex:none; height:auto; padding:22px 20px; }
     .rail nav{ display:none; }
     main{ padding:36px 22px 70px; }
+    .awards-grid { grid-template-columns: 1fr; }
     
     .mobile-nav{
       display:flex; gap:6px; overflow-x:auto; padding:14px 16px;
@@ -153,10 +147,10 @@
 
   <main>
     <div class="panel active">
-      <!-- Fixed: Removed invalid span wrapper -->
       <h2 style="border-bottom: 3px solid #000000; padding-bottom: 5px; display: inline-block; margin-bottom: 26px;">Awards and Honors</h2>
       
-            <div class="awards-grid">
+      <!-- AWARDS GRID -->
+      <div class="awards-grid">
         
         <!-- Award 1 -->
         <div class="award-card">
@@ -189,9 +183,6 @@
           <div class="award-issuer">University Research Fund</div>
           <p class="award-desc">Received a grant to develop an adaptive P-Q control testbed for microgrids using MATLAB/Simulink.</p>
         </div>
-
-      </div>
-        <!-- END COPYING AWARDS HERE -->
 
       </div>
     </div>
