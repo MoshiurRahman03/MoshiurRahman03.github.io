@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects - Moshiur Rahman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* --- CORE CSS STRUCTURE --- */
+  :root{
+    --navy:#16232F; --navy-2:#1F3245;
+    --paper:#F1EFE6; --paper-2:#E8E5D8;
+    --ink:#1A1D1B; --brass:#9C7A34; --brass-soft:#C7A559;
+    --line: rgba(26,29,27,0.14);
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:'Source Sans 3', sans-serif; font-size:17px; line-height:1.65; }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; line-height:1.14; margin:0; color:var(--navy); }
+  .shell{ display:flex; align-items:flex-start; max-width:none; width:100%; margin:0; }
+  
+  /* Rail */
+  .rail{ position:sticky; top:0; width:280px; flex:0 0 280px; height:100vh; background:var(--navy); color:var(--paper); padding:40px 30px; display:flex; flex-direction:column; justify-content:space-between; overflow-y: auto; }
+  .avatar{ width:76px; height:76px; border-radius:50%; background:linear-gradient(155deg, var(--brass-soft), var(--brass)); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:26px; color:var(--navy); margin-bottom:18px; }
+  .rail-top h1{ color:var(--paper); font-size:26px; margin-bottom:4px; }
+  .rail-top .role{ font-size:14px; color:rgba(241,239,230,0.68); margin-bottom:30px; max-width:22ch; }
+  .rail nav ul{ display:flex; flex-direction:column; gap:4px; padding:0; margin:0; list-style:none; }
+  .rail nav a { display:flex; align-items:center; gap:11px; font-size:15px; color:rgba(241,239,230,0.6); padding:10px; text-decoration:none; border-left:2px solid transparent; border-radius:2px; transition:color .15s ease, border-color .15s ease, background .15s ease; }
+  .rail nav a:hover{ color:var(--paper); }
+  .rail nav a.active { color:var(--paper); border-left-color:var(--brass-soft); background:rgba(241,239,230,0.05); font-weight:600; }
+  .rail nav a svg{ width:16px; height:16px; flex:0 0 16px; opacity:.85; }
+  .rail nav a.dl{ margin-top:6px; border-top:1px solid rgba(241,239,230,0.14); padding-top:16px; }
+  .rail-bottom{ display:flex; gap:14px; margin-top: auto; padding-top: 20px; }
+  .rail-bottom a{ opacity:.65; transition:opacity .15s; color: var(--paper); }
+  .rail-bottom a:hover{ opacity:1; }
+  .rail-bottom svg{ width:18px; height:18px; }
+
+  /* Main Content */
+  main{ flex:1; min-width:0; padding:56px 60px 90px; }
+  .panel{ display:block; }
+  .eyebrow{ font-family:'Fraunces',serif; font-size:14px; color:var(--brass); margin-bottom:6px; display:block; }
+
+  /* Projects Styling */
+  .proj-group{ margin-bottom:34px; }
+  .proj-group:last-child{ margin-bottom:0; }
+  .proj-group > h3{ font-weight:700; font-size:13.5px; letter-spacing:.01em; color:var(--brass); margin-bottom:14px; }
+  .proj{ display:grid; grid-template-columns:2fr 3fr; gap:24px; padding:16px 0; border-top:1px solid var(--line); }
+  .proj:first-of-type{ border-top:none; }
+  .proj .proj-name{ font-family:'Fraunces',serif; font-size:18px; color:var(--navy); margin-bottom:6px; }
+  .proj .proj-tools{ font-size:13px; color:var(--brass); }
+  .proj .proj-desc{ font-size:15.5px; color:#333; margin:0 0 10px 0; }
+  .proj .proj-link{ display:inline-flex; align-items:center; gap:6px; font-size:13.5px; font-weight:600; color:var(--navy-2); text-decoration:none; border-bottom:1px solid var(--brass); padding-bottom:1px; }
+  .proj .proj-link:hover{ color:var(--brass); }
+  .proj .proj-link svg{ width:13px; height:13px; }
+
+  /* Mobile */
+  @media (max-width: 880px){
+    .shell{ flex-direction:column; }
+    .rail{ position:relative; width:100%; flex:none; height:auto; padding:22px 20px; }
+    .rail nav{ display:none; }
+    main{ padding:36px 22px 70px; }
+    .proj{ grid-template-columns:1fr; gap:6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <aside class="rail">
+    <div>
+      <div class="rail-top">
+        <div class="avatar">MR</div>
+        <div>
+          <h1>Moshiur Rahman</h1>
+          <div class="role">MS/PHD Aspirant</div>
+        </div>
+      </div>
+      <nav aria-label="Section navigation" style="margin-top:32px;">
+        <ul id="nav-list">
+          <li><a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</a></li>
+          <li><a href="research.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v6L4 19a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-10V3"/><path d="M9 3h6"/></svg>Research</a></li>
+          <li><a href="education.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>Education</a></li>
+          <li><a href="publications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Publications</a></li>
+          <li><a href="skills.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Skills</a></li>
+          
+          <!-- ACTIVE PAGE -->
+          <li><a href="projects.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l2-3h5l2 3h9v13H3z"/></svg>Projects</a></li>
+          
+          <li><a href="certifications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l-2 5l2-2l2 2l-2-5"/><circle cx="12" cy="9" r="6"/></svg>Certifications</a></li>
+          <li><a href="awards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>Awards</a></li>
+          <li><a href="index.html#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</a></li>
+        </ul>
+        <a class="dl" href="cv.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download CV</a>
+      </nav>
+    </div>
+    <div class="rail-bottom">
+      <a href="mailto:moshiur2003rahman@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+      <a href="https://linkedin.com/in/moshiur-r-28479525b" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9v12"/><path d="M10 13a4 4 0 0 1 8 0v8"/></svg></a>
+    </div>
+  </aside>
+
+  <main>
+    <div class="panel active">
+      <span class="eyebrow"><h2 style="border-bottom: 3px solid #000000; padding-bottom: 5px; display: inline-block; margin-bottom: 26px;">Academic projects</h2></span>
+
+      <div class="proj-group">
+        <h3>Embedded Systems &amp; Digital Electronics</h3>
+        <div class="proj">
+          <div><div class="proj-name">ESP32-Based Smart Notice Board with IoT Interface</div><div class="proj-tools">ESP32, IoT Protocols</div><div class="proj-tools">Course:Microprocessor and Embedded System Lab Lab</div><div class="proj-tools">Academic Level:L-4/T-1</div></div>
+          <p class="proj-desc">Built an IoT-enabled smart notice board using UART communication for data transfer and wireless protocols for remote updates, with an RTC module for time-based scheduling and real-time notifications.</p>
+          <a class="proj-link" href="projects/EEE-416-project-report-Group1.pdf">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="proj">
+          <div><div class="proj-name">Error Correction in a 32-bit Message Using FPGA</div><div class="proj-tools">FPGA, Verilog</div><div class="proj-tools">Course:Digital Electronics Lab</div><div class="proj-tools">Academic Level:L-3/T-2</div></div>
+          <p class="proj-desc">Implemented Hamming code error detection and correction on FPGA using Verilog.</p>
+          <a class="proj-link" href="projects/DLD Project Report.pdf">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="proj-group">
+        <h3>Robotics, Control Systems &amp; DSP</h3>
+        <div class="proj">
+          <div><div class="proj-name">Vision-Guided Autonomous Mobile Manipulation for Assistive Robotics</div><div class="proj-tools">Raspberry Pi, 6-DOF robotic hand, ultrasonic sensors, Python</div><div class="proj-tools">Course:Roborics And Automation Lab</div><div class="proj-tools">Academic Level:L-4/T-2</div></div>
+          <p class="proj-desc">Programmed a 6-DOF robotic arm on Raspberry Pi, integrating ultrasonic, touch, and camera feedback with motor control algorithms for obstacle detection and navigation assistance.</p>
+          <a class="proj-link" href="projects/Robotics_project.pdf" target="_blank" rel="noopener">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="proj">
+          <div><div class="proj-name">Ball Balancing Plate with Image Processing</div><div class="proj-tools">Python, image processing, PID controller</div><div class="proj-tools">Course:Control System I Lab</div><div class="proj-tools">Academic Level:L-3/T-2</div></div>
+          <p class="proj-desc">Designed a real-time closed-loop control system to stabilize a ball on a plate using camera-based image processing and sensor feedback, with a PID controller driving servo actuation.</p>
+          <a class="proj-link" href="projects/ball-balancing-plate.html">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="proj">
+          <div><div class="proj-name">Digit Recognition Using Image Processing in MATLAB</div><div class="proj-tools">MATLAB, image processing, CNN</div><div class="proj-tools">Course: Digital Signal Processing Lab</div><div class="proj-tools">Academic Level:L-3/T-1</div></div>
+          <p class="proj-desc">Built a machine learning-based digit recognition system in MATLAB, implementing feature extraction, preprocessing, and CNN-based classification for handwritten digits.</p>
+          <a class="proj-link" href="projects/DSP Project Report_Group 5.pdf" target="_blank" rel="noopener">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>      
+        </div>
+      </div>
+
+      <div class="proj-group">
+        <h3>Power Systems</h3>
+        <div class="proj">
+          <div><div class="proj-name">Adaptive P-Q Control of PV Generators in Microgrids Based on LSTM Forecasting</div><div class="proj-tools">MATLAB/Simulink, Python</div><div class="proj-tools">Course:Power System II Lab</div><div class="proj-tools">Academic Level:L-4/T-1</div></div>
+          <p class="proj-desc">Developed an adaptive control strategy using LSTM-based power forecasting for photovoltaic generators, implemented in Simulink to enhance grid stability, power quality, and dynamic response in microgrid applications.</p>
+          <a class="proj-link" href="projects/pv-lstm-microgrid.html">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="proj"> 
+          <div><div class="proj-name">Automatic Generation Control in a Two-Area System</div><div class="proj-tools">Tool/Software:Simulink</div><div class="proj-tools">Course:Power System I Lab</div><div class="proj-tools">Academic Level:L-3/T-1</div></div>
+          <p class="proj-desc">Characterized the dynamic inter-dependency between load disturbances, system frequency excursions, and tie-line power deviations in a two-area interconnected power system.</p>
+          <a class="proj-link" href="projects/agc-two-area.html">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="proj-group">
+        <h3>Power Electronics</h3>
+        <div class="proj">
+          <div><div class="proj-name">1500W Sinusoidal PWM Inverter</div><div class="proj-tools">PSpice, Proteus</div><div class="proj-tools">Course:Power Electronics Lab</div><div class="proj-tools">Academic Level:L-3/T-2</div></div>
+          <p class="proj-desc">Designed and validated a 1500W sinusoidal PWM inverter focused on stable, low-noise power supply design. Used PSpice to optimize switching losses and Proteus for microcontroller integration, ensuring clean PWM generation with a 555 timer.</p>
+          <a class="proj-link" href="projects/PE Project Report.pdf">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="proj-group">
+        <h3>Electrical Service Design</h3>
+        <div class="proj">
+          <div><div class="proj-name">Integrated Electrical Infrastructure Design For a  10-storey Residential Building</div><div class="proj-tools">Tool : AutoCad</div><div class="proj-tools">Course:Electrical Service Design </div><div class="proj-tools">Academic Level:L-4/T-2</div></div>
+          <p class="proj-desc">Developed a comprehensive electrical infrastructure design using AutoCAD, integrating single-line diagram (SLD) development, cable and conduit sizing, power factor improvement, and lightning risk assessment. Applied BNBC 2020 standards to ensure system safety, resilience, and operational efficiency.</p>
+          <a class="proj-link" href="projects/Project Report_EEE_414_B2_Group1.pdf">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div> 
+
+      <div class="proj-group"> 
+        <h3>Communication and Analog Electronics</h3>
+        <div class="proj">
+          <div><div class="proj-name">Error correction using Hamming Code </div><div class="proj-tools">MATLAB/Simulink, Python</div><div class="proj-tools">Course:Communication System -I Lab</div><div class="proj-tools">Academic Level:L-3/T-1</div></div>
+          <p class="proj-desc">Built Real time  hardware Correction in single bit using Hamming Code</p>
+           <a class="proj-link" href="projects/Final Report_EEE-310_Grp-5.pdf" target="_blank" rel="noopener">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>      
+        </div>
+        <div class="proj">
+          <div><div class="proj-name">Logarithmic Amplifier Using matched transistor </div><div class="proj-tools">Tool/Software:Simulink</div><div class="proj-tools">Course:Analog Electronics II Lab</div><div class="proj-tools">Academic Level:L-2/T-2</div></div>
+          <p class="proj-desc">Characterized the dynamic inter-dependency between load disturbances, system frequency excursions, and tie-line power deviations in a two-area interconnected power system.</p>
+          <a class="proj-link" href="projects/OP AMP.pdf">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="proj-group">
+        <h3>Numerical Analysis</h3>
+        <div class="proj">
+          <div><div class="proj-name">Curl, Divergence and Gradient of a field</div><div class="proj-tools">Tool :Matlab</div><div class="proj-tools">Course:Numerical Technique And Analysis Laboratory</div><div class="proj-tools">Academic Level:L-2/T-1</div></div>
+          <p class="proj-desc">This project explores the vector calculus concepts of gradient, divergence, and curl and demonstrates their implementation in MATLAB using simple code and a GUI. The calculated results are visualized through plots to help analyze and understand the behavior of scalar and vector fields.</p>
+          <a class="proj-link" href="projects/Numerical_Analysis_Project_report.pdf">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div> 
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
