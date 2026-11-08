@@ -291,53 +291,14 @@ details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
 </div>
 <script>
   (function(){
-    // 1. Handle page highlighting based on URL
+    // Highlight the active page based on the URL
     var page = window.location.pathname.split("/").pop() || 'index.html';
-    var hash = window.location.hash;
     var links = document.querySelectorAll('.rail nav a, .mobile-nav a');
     
     links.forEach(function(link) {
       link.classList.remove('active');
-      var href = link.getAttribute('href');
-      
-      // If we are on index.html and there is no hash (or #home), highlight Home
-      if (href === 'index.html' && page === 'index.html' && (!hash || hash === '#home')) {
+      if (link.getAttribute('href') === page) {
         link.classList.add('active');
-      } 
-      // If we are on index.html and hash is #contact, highlight Contact
-      else if (href === 'index.html#contact' && page === 'index.html' && hash === '#contact') {
-        link.classList.add('active');
-      }
-      // Otherwise, highlight based on the file name
-      else if (href === page) {
-        link.classList.add('active');
-      }
-    });
-
-    // 2. Handle the tab switching for Home and Contact on index.html
-    var panels = document.querySelectorAll('.panel');
-    
-    function showPanel(target) {
-      panels.forEach(function(p){ 
-        p.classList.toggle('active', p.id === target); 
-      });
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
-
-    // Check on page load
-    if (hash === '#contact') {
-      showPanel('contact');
-    } else {
-      showPanel('home');
-    }
-
-    // Listen for hash changes (if someone clicks Contact while already on Home)
-    window.addEventListener('hashchange', function() {
-      var newHash = window.location.hash;
-      if (newHash === '#contact') {
-        showPanel('contact');
-      } else {
-        showPanel('home');
       }
     });
   })();
