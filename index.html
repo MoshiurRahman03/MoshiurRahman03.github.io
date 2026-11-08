@@ -218,6 +218,7 @@ details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
   @media (prefers-reduced-motion: reduce){ .panel{ animation:none; } }
 </style>
 </head>
+  
 <body>
 
 <div class="shell">
@@ -232,17 +233,24 @@ details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
       </div>
       <nav aria-label="Section navigation" style="margin-top:32px;">
         <ul id="nav-list">
-          <li><button data-target="home" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</button></li>
-          <li><a href="research.html" style="display:flex; align-items:center; gap:11px; font-size:15px; color:rgba(241,239,230,0.6); padding:10px 10px; border-left:2px solid transparent; width:100%; border-radius:2px; text-decoration:none; transition:color .15s ease;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px; height:16px; flex:0 0 16px; opacity:.85;"><path d="M9 3v6L4 19a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-10V3"/><path d="M9 3h6"/></svg>Research</a></li>
-          <li><a href="education.html" style="display:flex; align-items:center; gap:11px; font-size:15px; color:rgba(241,239,230,0.6); padding:10px 10px; border-left:2px solid transparent; width:100%; border-radius:2px; text-decoration:none; transition:color .15s ease;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px; height:16px; flex:0 0 16px; opacity:.85;"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>Education</a></li>
-          <li><a href="publications.html" style="display:flex; align-items:center; gap:11px; font-size:15px; color:rgba(241,239,230,0.6); padding:10px 10px; border-left:2px solid transparent; width:100%; border-radius:2px; text-decoration:none; transition:color .15s ease;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px; height:16px; flex:0 0 16px; opacity:.85;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Publications</a></li>
-          <li><a href="skills.html" style="display:flex; align-items:center; gap:11px; font-size:15px; color:rgba(241,239,230,0.6); padding:10px 10px; border-left:2px solid transparent; width:100%; border-radius:2px; text-decoration:none; transition:color .15s ease;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px; height:16px; flex:0 0 16px; opacity:.85;"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Skills</a></li>
-          <li><a href="projects.html" style="display:flex; align-items:center; gap:11px; font-size:15px; color:rgba(241,239,230,0.6); padding:10px 10px; border-left:2px solid transparent; width:100%; border-radius:2px; text-decoration:none; transition:color .15s ease;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px; height:16px; flex:0 0 16px; opacity:.85;"><path d="M3 7l2-3h5l2 3h9v13H3z"/></svg>Projects</a></li>
-          <li><a href="certifications.html" style="display:flex; align-items:center; gap:11px; font-size:15px; color:rgba(241,239,230,0.6); padding:10px 10px; border-left:2px solid transparent; width:100%; border-radius:2px; text-decoration:none; transition:color .15s ease;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px; height:16px; flex:0 0 16px; opacity:.85;"><path d="M12 15l-2 5l2-2l2 2l-2-5"/><circle cx="12" cy="9" r="6"/></svg>Certifications</a></li>
-          <li><a href="awards.html" style="display:flex; align-items:center; gap:11px; font-size:15px; color:rgba(241,239,230,0.6); padding:10px 10px; border-left:2px solid transparent; width:100%; border-radius:2px; text-decoration:none; transition:color .15s ease;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px; height:16px; flex:0 0 16px; opacity:.85;"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>Awards</a></li>
-          <li><button data-target="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</button></li>
-          
-        </ul>
+  <li><button data-target="home" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</button></li>
+  
+  <li><a href="research.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v6L4 19a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-10V3"/><path d="M9 3h6"/></svg>Research</a></li>
+  
+  <li><a href="education.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>Education</a></li>
+  
+  <li><a href="publications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Publications</a></li>
+  
+  <li><a href="skills.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Skills</a></li>
+  
+  <li><a href="projects.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l2-3h5l2 3h9v13H3z"/></svg>Projects</a></li>
+  
+  <li><a href="certifications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l-2 5l2-2l2 2l-2-5"/><circle cx="12" cy="9" r="6"/></svg>Certifications</a></li>
+  
+  <li><a href="awards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>Awards</a></li>
+  
+  <li><button data-target="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</button></li>
+</ul>
         <a class="dl" href="cv.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download CV</a>
       </nav>
     </div>
@@ -365,6 +373,52 @@ details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
       if(validIds.indexOf(initial) !== -1){ 
         activate(initial, false); 
       }
+    }
+
+    window.addEventListener('hashchange', handleHash);
+    handleHash();
+  })();
+</script>
+  <script>
+  (function(){
+    // 1. Get the current page name from the URL
+    var path = window.location.pathname;
+    var page = path.split("/").pop() || 'index.html';
+
+    // 2. Find all links in the sidebar and mobile menu
+    var links = document.querySelectorAll('.rail nav a, .mobile-nav a');
+
+    // 3. Remove the 'active' class from all of them
+    links.forEach(function(link) {
+      link.classList.remove('active');
+      
+      // 4. If the link's href matches the current page, add the 'active' class
+      var href = link.getAttribute('href');
+      if (href === page) {
+        link.classList.add('active');
+      }
+    });
+
+    // 5. Keep the JavaScript tab switching ONLY for the Home and Contact buttons
+    var buttons = document.querySelectorAll('#nav-list button, #mobile-nav button');
+    var panels = document.querySelectorAll('.panel');
+
+    function activate(target, push){
+      if(!target) return;
+      panels.forEach(function(p){ p.classList.toggle('active', p.id === target); });
+      buttons.forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-target') === target); });
+      if(push !== false){ history.replaceState(null, '', '#' + target); }
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    buttons.forEach(function(b){
+      b.addEventListener('click', function(){ activate(b.getAttribute('data-target')); });
+    });
+
+    function handleHash(){
+      var initial = (location.hash || '').replace('#','') || 'home';
+      var validIds = Array.prototype.map.call(panels, function(p){ return p.id; });
+      if(validIds.indexOf(initial) !== -1){ activate(initial, false); }
     }
 
     window.addEventListener('hashchange', handleHash);
