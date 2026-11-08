@@ -104,6 +104,51 @@
     </div>
   </main>
 </div>
+<script>
+  (function(){
+    // 1. Get the current page name from the URL
+    var path = window.location.pathname;
+    var page = path.split("/").pop() || 'index.html';
 
+    // 2. Find all links in the sidebar and mobile menu
+    var links = document.querySelectorAll('.rail nav a, .mobile-nav a');
+
+    // 3. Remove the 'active' class from all of them
+    links.forEach(function(link) {
+      link.classList.remove('active');
+      
+      // 4. If the link's href matches the current page, add the 'active' class
+      var href = link.getAttribute('href');
+      if (href === page) {
+        link.classList.add('active');
+      }
+    });
+
+    // 5. Keep the JavaScript tab switching ONLY for the Home and Contact buttons
+    var buttons = document.querySelectorAll('#nav-list button, #mobile-nav button');
+    var panels = document.querySelectorAll('.panel');
+
+    function activate(target, push){
+      if(!target) return;
+      panels.forEach(function(p){ p.classList.toggle('active', p.id === target); });
+      buttons.forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-target') === target); });
+      if(push !== false){ history.replaceState(null, '', '#' + target); }
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    buttons.forEach(function(b){
+      b.addEventListener('click', function(){ activate(b.getAttribute('data-target')); });
+    });
+
+    function handleHash(){
+      var initial = (location.hash || '').replace('#','') || 'home';
+      var validIds = Array.prototype.map.call(panels, function(p){ return p.id; });
+      if(validIds.indexOf(initial) !== -1){ activate(initial, false); }
+    }
+
+    window.addEventListener('hashchange', handleHash);
+    handleHash();
+  })();
+</script>
 </body>
 </html>
