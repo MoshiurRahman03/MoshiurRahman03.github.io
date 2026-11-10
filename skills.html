@@ -7,6 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- CDN for Real Tech Logos -->
+<link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
 <style>
   /* --- CORE CSS STRUCTURE --- */
   :root{
@@ -40,10 +43,61 @@
   main{ flex:1; min-width:0; padding:56px 60px 90px; }
   .panel{ display:block; }
   
-  /* Skills Grid */
-  .skills-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px 40px; }
-  .skill-cat h3{ font-size:15px; font-weight:700; color:var(--navy-2); margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid var(--line); }
-  .skill-cat p{ font-size:15px; color:#333; margin-bottom:0; }
+  /* --- UPGRADED SKILLS GRID --- */
+  .skills-grid{ 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 32px 40px; 
+  }
+  
+  .skill-cat h3 { 
+    font-size: 18px; 
+    font-family: 'Fraunces', serif;
+    font-weight: 600; 
+    color: var(--navy); 
+    margin-bottom: 12px; 
+    padding-bottom: 8px; 
+    border-bottom: 2px solid var(--brass); 
+    display: inline-block;
+  }
+
+  /* The container for the skill tags */
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Individual Skill Pill */
+  .skill-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 14.5px;
+    color: #333;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .skill-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-color: var(--brass-soft);
+  }
+
+  /* Icon Styling */
+  .skill-pill svg {
+    width: 18px;
+    height: 18px;
+    color: var(--navy-2);
+  }
+  .skill-pill i {
+    font-size: 18px;
+    color: var(--navy-2);
+  }
 
   /* Mobile */
   .mobile-nav{ display:none; }
@@ -52,7 +106,7 @@
     .rail{ position:relative; width:100%; flex:none; height:auto; padding:22px 20px; }
     .rail nav{ display:none; }
     main{ padding:36px 22px 70px; }
-    .skills-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:1fr; gap: 24px; }
     
     .mobile-nav{
       display:flex; gap:6px; overflow-x:auto; padding:14px 16px;
@@ -97,31 +151,150 @@
       </nav>
     </div>
     <div class="rail-bottom">
-      <a href="moshiur2003rahman@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+      <a href="mailto:moshiur2003rahman@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
       <a href="https://linkedin.com/in/moshiur-r-28479525b" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9v12"/><path d="M10 13a4 4 0 0 1 8 0v8"/></svg></a>
       <a href="https://orcid.org/0009-0006-1270-1631" target="_blank" rel="noopener" aria-label="ORCID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="9" cy="8.5" r="0.9" fill="currentColor" stroke="none"/><line x1="9" y1="11" x2="9" y2="16"/><path d="M12.5 11h1.8a2.7 2.7 0 0 1 0 5.4h-1.8v-5.4z"/></svg></a>
-      <a href="2006099@eee.buet.ac.bd" aria-label="Outlook Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+      <a href="mailto:2006099@eee.buet.ac.bd" aria-label="Outlook Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
     </div>
   </aside>
 
   <main>
     <div class="panel active">
-      <!-- Fixed: Removed the extra span wrapper and added proper margins -->
-      <h2 style="border-bottom: 3px solid #000000; padding-bottom: 5px; display: inline-block; margin-bottom: 26px;">Technical skills</h2>
+      <h2 style="border-bottom: 3px solid #000000; padding-bottom: 5px; display: inline-block; margin-bottom: 26px;">Technical Skills</h2>
       
       <div class="skills-grid">
-        <div class="skill-cat"><h3>Programming</h3><p>MATLAB, C, Python, Verilog</p></div>
-        <div class="skill-cat"><h3>Embedded Systems &amp; Hardware</h3><p>Arduino, ESP32, STM32, FPGA, Raspberry Pi (4B, 8GB)</p></div>
-        <div class="skill-cat"><h3>Design &amp; Simulation Tools</h3><p>AutoCAD, PSpice, Proteus, Quartus</p></div>
-        <div class="skill-cat"><h3>System Modeling &amp; Analysis</h3><p>MATLAB/Simulink, PSAF</p></div>
-        <div class="skill-cat"><h3>Data Analysis &amp; Machine Learning</h3><p>NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, PyTorch, Opacus, OpenCV, Qiskit</p></div>
-        <div class="skill-cat"><h3>Office &amp; Documentation</h3><p>Microsoft 365, Overleaf (LaTeX)</p></div>
+        
+        <!-- Category 1 -->
+        <div class="skill-cat">
+          <h3>Programming</h3>
+          <div class="skill-tags">
+            
+            <div class="skill-pill">
+              <i class="devicon-matlab-plain"></i> MATLAB
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-c-plain"></i> C
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-python-plain"></i> Python
+            </div>
+            <div class="skill-pill">
+              <!-- Verilog doesn't have a standard icon, using a code SVG -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg> Verilog
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Category 2 -->
+        <div class="skill-cat">
+          <h3>Embedded Systems &amp; Hardware</h3>
+          <div class="skill-tags">
+            <div class="skill-pill">
+              <i class="devicon-arduino-plain"></i> Arduino
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-raspberrypi-plain"></i> Raspberry Pi (4B, 8GB)
+            </div>
+            <div class="skill-pill">
+              <!-- Hardware generic icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg> ESP32
+            </div>
+            <div class="skill-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg> STM32
+            </div>
+            <div class="skill-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg> FPGA
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3 -->
+        <div class="skill-cat">
+          <h3>Design &amp; Simulation Tools</h3>
+          <div class="skill-tags">
+            <div class="skill-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> AutoCAD
+            </div>
+            <div class="skill-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> PSpice
+            </div>
+            <div class="skill-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Proteus
+            </div>
+            <div class="skill-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Quartus
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 4 -->
+        <div class="skill-cat">
+          <h3>System Modeling &amp; Analysis</h3>
+          <div class="skill-tags">
+            <div class="skill-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h4l3-9 5 18 3-9h5"/></svg> MATLAB/Simulink
+            </div>
+            <div class="skill-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h4l3-9 5 18 3-9h5"/></svg> PSAF
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 5 -->
+        <div class="skill-cat">
+          <h3>Data Analysis &amp; Machine Learning</h3>
+          <div class="skill-tags">
+            <div class="skill-pill">
+              <i class="devicon-numpy-plain"></i> NumPy
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-pandas-plain"></i> Pandas
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-matplotlib-plain"></i> Matplotlib
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-seaborn-plain"></i> Seaborn
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-scikitlearn-plain"></i> Scikit-learn
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-pytorch-original"></i> PyTorch
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-opencv-plain"></i> OpenCV
+            </div>
+            <div class="skill-pill">
+              <!-- Generic Data SVG for Opacus and Qiskit -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Opacus
+            </div>
+            <div class="skill-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Qiskit
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 6 -->
+        <div class="skill-cat">
+          <h3>Office &amp; Documentation</h3>
+          <div class="skill-tags">
+            <div class="skill-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Microsoft 365
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-latex-original"></i> Overleaf (LaTeX)
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
 </div>
 
-<!-- Fixed: Added the missing Mobile Navigation menu -->
+<!-- Mobile Navigation -->
 <div class="mobile-nav" id="mobile-nav">
   <a href="home.html">Home</a>
   <a href="research.html">Research</a>
@@ -136,7 +309,6 @@
 
 <script>
   (function(){
-    // Highlight the active page based on the URL
     var page = window.location.pathname.split("/").pop() || 'home.html';
     var links = document.querySelectorAll('.rail nav a, .mobile-nav a');
     
