@@ -42,38 +42,20 @@
   main{ flex:1; min-width:0; padding:56px 60px 90px; }
   .panel{ display:block; }
   
-  /* --- TEACHING CARD --- */
-  .teaching-card {
-    background: #ffffff;
-    border: 1px solid var(--line);
-    border-left: 4px solid var(--brass);
-    padding: 24px;
-    margin-bottom: 36px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-  }
-  .teaching-card h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 20px;
-    color: var(--navy);
-    margin-bottom: 8px;
-  }
-  .teaching-meta {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--brass);
-    margin-bottom: 12px;
-  }
-  .teaching-desc {
-    font-size: 15.5px;
-    color: #333;
-    margin: 0;
+  /* Headers */
+  .section-title {
+    border-bottom: 3px solid #000000; 
+    padding-bottom: 5px; 
+    display: inline-block; 
+    margin-bottom: 26px;
   }
 
-  /* --- UPGRADED SKILLS GRID --- */
+  /* --- SKILLS GRID --- */
   .skills-grid{ 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
     gap: 32px 40px; 
+    margin-bottom: 50px; /* Adds space before teaching section */
   }
   
   .skill-cat h3 { 
@@ -87,14 +69,12 @@
     display: inline-block;
   }
 
-  /* The container for the skill tags */
   .skill-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
   }
 
-  /* Individual Skill Pill */
   .skill-pill {
     display: flex;
     align-items: center;
@@ -114,15 +94,42 @@
     border-color: var(--brass-soft);
   }
 
-  /* Icon Styling */
-  .skill-pill svg {
-    width: 18px;
-    height: 18px;
-    color: var(--navy-2);
+  .skill-pill svg { width: 18px; height: 18px; color: var(--navy-2); }
+  .skill-pill i { font-size: 18px; color: var(--navy-2); }
+
+  /* --- TEACHING EXPERIENCE CARD --- */
+  .teaching-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--brass);
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
   }
-  .skill-pill i {
-    font-size: 18px;
-    color: var(--navy-2);
+  .teaching-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .teaching-meta {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--brass);
+    margin-bottom: 15px;
+  }
+  .teaching-desc {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .teaching-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--line);
   }
 
   /* Mobile */
@@ -132,7 +139,7 @@
     .rail{ position:relative; width:100%; flex:none; height:auto; padding:22px 20px; }
     .rail nav{ display:none; }
     main{ padding:36px 22px 70px; }
-    .skills-grid{ grid-template-columns:1fr; gap: 24px; }
+    .skills-grid{ grid-template-columns:1fr; gap: 24px; margin-bottom: 40px; }
     
     .mobile-nav{
       display:flex; gap:6px; overflow-x:auto; padding:14px 16px;
@@ -186,17 +193,11 @@
 
   <main>
     <div class="panel active">
-      <h2 style="border-bottom: 3px solid #000000; padding-bottom: 5px; display: inline-block; margin-bottom: 26px;">Teaching & Technical Skills</h2>
       
-      <!-- NEW TEACHING EXPERIENCE CARD -->
-      <div class="teaching-card">
-        <h3>Pre-University Academic Instructor</h3>
-        <div class="teaching-meta">4 Years of Experience</div>
-        <p class="teaching-desc">Mentored college-level students in foundational STEM subjects, preparing them for university engineering admissions. Developed curriculum and delivered lectures in <strong>Physics, Chemistry, Mathematics, C Programming, and Digital Electronics</strong>.</p>
-      </div>
-
+      <!-- SECTION 1: TECHNICAL SKILLS -->
+      <h2 class="section-title">Technical Skills</h2>
+      
       <div class="skills-grid">
-        
         <!-- Category 1 -->
         <div class="skill-cat">
           <h3>Programming</h3>
@@ -213,7 +214,7 @@
           <h3>Embedded Systems &amp; Hardware</h3>
           <div class="skill-tags">
             <div class="skill-pill"><i class="devicon-arduino-plain"></i> Arduino</div>
-            <div class="skill-pill"><i class="devicon-raspberrypi-plain"></i> Raspberry Pi (4B, 8GB)</div>
+            <div class="skill-pill"><i class="devicon-raspberrypi-plain"></i> Raspberry Pi</div>
             <div class="skill-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg> ESP32</div>
             <div class="skill-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg> STM32</div>
             <div class="skill-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg> FPGA</div>
@@ -256,28 +257,34 @@
           </div>
         </div>
 
-        <!-- Category 6: TEACHING SKILLS -->
+        <!-- Category 6 -->
         <div class="skill-cat">
-          <h3>Teaching &amp; Mentorship</h3>
+          <h3>Office &amp; Documentation</h3>
           <div class="skill-tags">
+            <div class="skill-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Microsoft 365</div>
+            <div class="skill-pill"><i class="devicon-latex-original"></i> Overleaf</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: TEACHING EXPERIENCE -->
+      <h2 class="section-title">Teaching Experience</h2>
+      
+      <div class="teaching-card">
+        <h3>Pre-University Academic Instructor</h3>
+        <div class="teaching-meta">4 Years of Experience</div>
+        <p class="teaching-desc">Mentored college-level students in foundational STEM subjects, preparing them for university engineering admissions. Developed curriculum and delivered lectures in <strong>Physics, Chemistry, Mathematics, C Programming, and Digital Electronics</strong>.</p>
+        
+        <!-- Teaching Subject Tags -->
+        <div class="teaching-tags">
             <div class="skill-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg> Physics</div>
             <div class="skill-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg> Chemistry</div>
             <div class="skill-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg> Mathematics</div>
             <div class="skill-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg> C Programming</div>
             <div class="skill-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg> Digital Electronics</div>
-          </div>
         </div>
-
-        <!-- Category 7 -->
-        <div class="skill-cat">
-          <h3>Office &amp; Documentation</h3>
-          <div class="skill-tags">
-            <div class="skill-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Microsoft 365</div>
-            <div class="skill-pill"><i class="devicon-latex-original"></i> Overleaf (LaTeX)</div>
-          </div>
-        </div>
-
       </div>
+
     </div>
   </main>
 </div>
