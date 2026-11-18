@@ -40,11 +40,25 @@
   main{ flex:1; min-width:0; padding:56px 60px 90px; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; }
   .panel{ display:block; width: 100%; max-width: 1000px; margin: 0 auto; }
   
-  .page-title {
+    .page-title {
     font-size: 2.5rem;
     margin-bottom: 10px;
     color: var(--navy);
     text-align: center;
+    position: relative;
+    padding-bottom: 15px; /* Space between text and line */
+  }
+
+  /* This creates the thin underline */
+  .page-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px; /* Adjust this to make the line longer or shorter */
+    height: 2px; /* Thickness of the line */
+    background-color: var(--brass); /* Use var(--line) if you want a subtle grey line instead of gold */
   }
   .page-subtitle {
     text-align: center;
