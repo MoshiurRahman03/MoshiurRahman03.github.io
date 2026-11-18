@@ -18,7 +18,7 @@
   *{ box-sizing:border-box; }
   body{ margin:0; background:var(--paper); color:var(--ink); font-family:'Source Sans 3', sans-serif; font-size:17px; line-height:1.65; }
   h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; line-height:1.14; margin:0; color:var(--navy); }
-  p{ margin:0 0 1em 0; max-width:70ch; text-align: justify;}
+  p{ margin:0 0 1em 0; max-width:75ch; }
   .shell{ display:flex; align-items:flex-start; max-width:none; width:100%; margin:0; }
   
   /* Rail */
@@ -42,12 +42,90 @@
   .panel{ display:block; }
   .eyebrow{ font-family:'Fraunces',serif; font-size:14px; color:var(--brass); margin-bottom:6px; display:block; }
   
-  /* Interests Tags */
-  .interests{ margin-top:20px; display:flex; flex-wrap:wrap; gap:10px; margin-bottom:36px; }
-  .interests span{ font-size:13.5px; padding:6px 12px; border:1px solid var(--line); border-radius:2px; color:var(--navy-2); background:var(--paper-2); }
+  /* --- ANIMATIONS --- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes drawLine {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
 
-  .research-body h2 { margin-top: 20px; margin-bottom: 15px; border-bottom: 2px solid #000; display: inline-block; padding-bottom: 5px; font-family: 'Source Sans 3', sans-serif; font-size: 24px; font-weight: 700; }
-  .research-body p { font-size: 19px; line-height: 1.65; color: #2b2f2c; text-align: left; }
+  /* --- SALIENT INTERESTS TAGS --- */
+  .interests{ margin-top:20px; display:flex; flex-wrap:wrap; gap:12px; margin-bottom:40px; }
+  
+  .interests span { 
+    font-size:14px; 
+    padding:8px 16px; 
+    border:1px solid var(--navy); 
+    border-radius:4px; 
+    color:var(--paper);
+    background:var(--navy); 
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    /* Staggered pop-in animation */
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+  }
+  
+  /* Stagger the delay for each tag */
+  .interests span:nth-child(1) { animation-delay: 0.1s; }
+  .interests span:nth-child(2) { animation-delay: 0.2s; }
+  .interests span:nth-child(3) { animation-delay: 0.3s; }
+  .interests span:nth-child(4) { animation-delay: 0.4s; }
+  .interests span:nth-child(5) { animation-delay: 0.5s; }
+
+  /* Hover effect for tags */
+  .interests span:hover {
+    background: var(--brass);
+    border-color: var(--brass);
+    color: var(--navy);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(156, 122, 52, 0.25);
+  }
+
+  /* --- SALIENT RESEARCH HEADING & BODY --- */
+  .research-body {
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .research-body h2 { 
+    margin-top: 10px; 
+    margin-bottom: 24px; 
+    display: inline-block; 
+    font-family: 'Fraunces', serif; 
+    font-size: 2.2rem; 
+    font-weight: 600; 
+    color: var(--navy); 
+    position: relative;
+    padding-bottom: 8px;
+  }
+  
+  /* Animated Gold Underline for Heading */
+  .research-body h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--brass);
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: drawLine 0.8s ease 0.6s forwards;
+  }
+  
+  .research-body p { 
+    font-size: 18px; 
+    line-height: 1.8; 
+    color: #2b2f2c; 
+    text-align: justify; 
+    margin-bottom: 1.5em; 
+  }
 
   /* Mobile */
   .mobile-nav{ display:none; }
@@ -110,6 +188,8 @@
   <main>
     <div class="panel active">
       <span class="eyebrow" style="font-size:16px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding-bottom:6px; border-bottom:2px solid var(--brass); display:inline-block;">Research</span>
+      
+      <!-- INTERESTS TAGS WITH STAGGERED ANIMATION -->
       <div class="interests">
           <span>Privacy-Preserving Machine Learning</span>
           <span>Federated Learning</span>
@@ -118,23 +198,18 @@
           <span>Robotics &amp; Automation</span>
       </div>
       
-      <h2 style="border-bottom: 3px solid #000000; padding-bottom: 5px; display: inline-block; margin-bottom: 16px; font-family: 'Source Sans 3', sans-serif; font-size: 24px; font-weight: 700;">Research Interest</h2>
       <div class="research-body">
-        <p>My Research interest lies in the intersection of Privacy Preserving Machine Learning, Federated Learning, Distributed Computation and Quantum Computing. I am particularly interested to implement these mathematical frameworks in Cyber physical system to enhance both security and reliability.
-        In future, incoming smart grid operation such as dynamic tariffing, stability etc will be highly dependent on smart meter data analytics, moreover researchers found that socio-demographic characteristics of a consumer keeps
-        a great impact on energy consumption and hence on grid stability. Several
-        studies have been conducted in this area where prosumer’s personal load consumption data and socio-demographic profiling have been correlated. Both
-        types of information are regarded as highly sensitive and classified data according to the General Data Protection Regulation (GDPR).Though previous
-        studies implemented various encryption based pipeline, we adopt Gaussian
-        mechanism based differential privacy, a cryptographically motivated mathematical framework which ensures user’s plausible deniability by adding calibrated noise with controllable standard deviation. In my current research
-        work, I combined privacy preserving features extraction from higher dimensional smart meter data and federated learning, when data are distributed
-        in many retailers. I investigated the privacy- utility trade off with respect to the privacy parameter epsilon (ϵ), number of participating site, impact of noisy principal components on downstream model, as well as performance gap between centralized training and federated training. In my work, I implemented a two stage differentially private pipeline respectively perturbation of the second-moment matrix to execute PCA and privacy-preserving federated learning via perturbed gradient descent.
-        Tuning Model architecture is a crucial factor in Machine learning, often it is
-        done manually which might be computationally expensive, automated model
-        tuning in a optimized way via Quantum computing can be a good option. I
-        am exploring Differentiable Quantum Architecture Search (DQAS), which transforms discrete quantum gate and connectivity choices into a differentiable search space using Gumbel-Softmax reparameterization and
-        a Bilevel optimization framework is employed to discover optimum quantum model architectures.
-        I have also worked on autonomous robotic and control systems as academic projects, which used camera and various sensor to perceive and to interact with environment focused on building physical AI system which will understand surroundings, make intelligent decision and perform complex task.These experiences together shaped my interests in developing intelligent,trustworthy, and autonomous AI systems, with a particular focus on privacy preserving and quantum ML and Physical AI.</p>
+        <!-- SALIENT HEADING WITH ANIMATED UNDERLINE -->
+        <h2>Research Interest</h2>
+        
+        <!-- Split into paragraphs for readability (No words changed) -->
+        <p>My Research interest lies in the intersection of Privacy Preserving Machine Learning, Federated Learning, Distributed Computation and Quantum Computing. I am particularly interested to implement these mathematical frameworks in Cyber physical system to enhance both security and reliability.</p>
+        
+        <p>In future, incoming smart grid operation such as dynamic tariffing, stability etc will be highly dependent on smart meter data analytics, moreover researchers found that socio-demographic characteristics of a consumer keeps a great impact on energy consumption and hence on grid stability. Several studies have been conducted in this area where prosumer’s personal load consumption data and socio-demographic profiling have been correlated. Both types of information are regarded as highly sensitive and classified data according to the General Data Protection Regulation (GDPR). Though previous studies implemented various encryption based pipeline, we adopt Gaussian mechanism based differential privacy, a cryptographically motivated mathematical framework which ensures user’s plausible deniability by adding calibrated noise with controllable standard deviation. In my current research work, I combined privacy preserving features extraction from higher dimensional smart meter data and federated learning, when data are distributed in many retailers. I investigated the privacy- utility trade off with respect to the privacy parameter epsilon (ϵ), number of participating site, impact of noisy principal components on downstream model, as well as performance gap between centralized training and federated training. In my work, I implemented a two stage differentially private pipeline respectively perturbation of the second-moment matrix to execute PCA and privacy-preserving federated learning via perturbed gradient descent.</p>
+        
+        <p>Tuning Model architecture is a crucial factor in Machine learning, often it is done manually which might be computationally expensive, automated model tuning in a optimized way via Quantum computing can be a good option. I am exploring Differentiable Quantum Architecture Search (DQAS), which transforms discrete quantum gate and connectivity choices into a differentiable search space using Gumbel-Softmax reparameterization and a Bilevel optimization framework is employed to discover optimum quantum model architectures.</p>
+        
+        <p>I have also worked on autonomous robotic and control systems as academic projects, which used camera and various sensor to perceive and to interact with environment focused on building physical AI system which will understand surroundings, make intelligent decision and perform complex task. These experiences together shaped my interests in developing intelligent, trustworthy, and autonomous AI systems, with a particular focus on privacy preserving and quantum ML and Physical AI.</p>
       </div>
     </div>
   </main>
