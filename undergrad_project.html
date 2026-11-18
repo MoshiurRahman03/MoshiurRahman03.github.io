@@ -140,8 +140,8 @@
           <li><a href="publications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Publications</a></li>
           <li><a href="skills.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Skills</a></li>
           
-          <!-- Active Page -->
-          <li><a href="undergrad_project.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l2-3h5l2 3h9v13H3z"/></svg>Projects</a></li>
+          <!-- Active Page link now points to the hub page -->
+          <li><a href="projects.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l2-3h5l2 3h9v13H3z"/></svg>Projects</a></li>
           
           <li><a href="certifications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l-2 5l2-2l2 2l-2-5"/><circle cx="12" cy="9" r="6"/></svg>Certifications</a></li>
           <li><a href="awards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>Awards</a></li>
@@ -275,7 +275,8 @@
   <a href="education.html">Education</a>
   <a href="publications.html">Publications</a>
   <a href="skills.html">Skills</a>
-  <a href="undergrad_project.html" class="active">Projects</a>
+  <!-- Active Page link now points to the hub page -->
+  <a href="projects.html" class="active">Projects</a>
   <a href="certifications.html">Certifications</a>
   <a href="awards.html">Awards</a>
   <a href="contact.html">Contact</a>
@@ -288,8 +289,14 @@
     
     links.forEach(function(link) {
       link.classList.remove('active');
-      // Check if current page matches href OR if it's the project pages
-      if (link.getAttribute('href') === page || (page.includes('project') && link.getAttribute('href').includes('project'))) {
+      var href = link.getAttribute('href');
+      
+      // If the user is on any project-related page, highlight the main "Projects" link
+      if (page.includes('project') && href === 'projects.html') {
+        link.classList.add('active');
+      } 
+      // Otherwise, do the normal matching
+      else if (href === page) {
         link.classList.add('active');
       }
     });
