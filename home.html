@@ -41,21 +41,24 @@
   main{ flex:1; min-width:0; padding:0; } 
   .panel{ display:block; }
 
-  /* --- SPLIT SCREEN LAYOUT --- */
+  /* --- SPLIT SCREEN LAYOUT (HALF PAGE) --- */
   .split-hero {
     display: flex;
-    min-height: 100vh; /* Fills the screen height */
+    /* This controls the height. It's not full screen (100vh), but a healthy banner size */
+    height: 75vh; 
+    min-height: 550px;
+    max-height: 800px;
     width: 100%;
     background-color: var(--navy);
   }
 
   .split-hero-text {
     flex: 1;
-    padding: 80px 60px;
+    padding: 60px 50px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    max-width: 50%; /* Takes up exactly half the screen */
+    justify-content: center; /* Centers the content vertically */
+    max-width: 50%;
   }
 
   .split-hero-image {
@@ -68,12 +71,12 @@
   .split-hero-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image fills the right side perfectly */
-    object-position: center top; /* Keeps your face in view */
+    object-fit: cover; 
+    object-position: center top; /* Keeps your face and upper body in frame */
     display: block;
   }
 
-  /* Biography Styling */
+  /* Biography Typography */
   .bio-heading {
     color: var(--brass);
     font-family: 'Fraunces', serif;
@@ -82,16 +85,30 @@
     border-bottom: 2px solid var(--brass);
     padding-bottom: 8px;
     display: inline-block;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     align-self: flex-start;
   }
 
-  .bio-text {
+  .welcome-heading {
     color: var(--paper);
-    font-size: 1.2rem;
-    line-height: 1.7;
-    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+
+  .bio-text {
+    color: rgba(241, 239, 230, 0.85);
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin: 0 0 30px 0;
     max-width: 100%;
+  }
+
+  .thanks-heading {
+    color: var(--paper);
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    margin: 0;
   }
 
   /* Mobile */
@@ -102,19 +119,20 @@
     .rail nav{ display:none; }
     
     .split-hero {
-      flex-direction: column; /* Stacks the text and image on mobile */
-      min-height: auto;
+      flex-direction: column; 
+      height: auto; /* Allows it to flow naturally on mobile */
+      max-height: none;
     }
     
     .split-hero-text {
       max-width: 100%;
       padding: 40px 22px;
-      order: 2; /* Puts text below the image on mobile */
+      order: 2; /* Text below image */
     }
     
     .split-hero-image {
       width: 100%;
-      height: 50vh; /* Restricts image height on mobile */
+      height: 50vh; /* Image height on mobile */
       order: 1;
     }
     
@@ -180,9 +198,13 @@
         <!-- Left Side: Text -->
         <div class="split-hero-text">
           <span class="bio-heading">Biography</span>
+          
+          <h2 class="welcome-heading">Hello, Welcome to My Portfolio</h2>
           <p class="bio-text">
-            I'm Moshiur, Graduated from BUET with a degree in Electrical and Electronic Engineering, I have developed research expertise at the intersection of privacy-preserving machine learning and cyber-physical systems. I am particularly passionate about advancing technologies in quantum computing and applied robotics
+            I'm Moshiur, Graduated from BUET with a degree in Electrical and Electronic Engineering, I have developed research expertise at the intersection of privacy-preserving machine learning and cyber-physical systems. I am particularly passionate about advancing technologies in quantum computing and applied robotics.
           </p>
+          
+          <h2 class="thanks-heading">Thank You for Visiting</h2>
         </div>
 
         <!-- Right Side: Image -->
