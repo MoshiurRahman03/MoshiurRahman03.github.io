@@ -21,7 +21,7 @@
   p{ margin:0 0 1em 0; max-width:64ch; }
   .shell{ display:flex; align-items:flex-start; max-width:none; width:100%; margin:0; }
   
-  /* Rail */
+  /* --- LEFT RAIL NAVIGATION --- */
   .rail{ position:sticky; top:0; width:320px; flex:0 0 320px; height:100vh; background:var(--navy); color:var(--paper); padding:40px 30px; display:flex; flex-direction:column; justify-content:space-between; overflow-y: auto; }
   .avatar{ width:76px; height:76px; border-radius:50%; background:linear-gradient(155deg, var(--brass-soft), var(--brass)); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:26px; color:var(--navy); margin-bottom:18px; }
   .rail-top h1{ color:var(--paper); font-size:26px; margin-bottom:4px; }
@@ -37,14 +37,13 @@
   .rail-bottom a:hover{ opacity:1; }
   .rail-bottom svg{ width:18px; height:18px; }
 
-  /* Main Content */
+  /* --- MAIN CONTENT AREA --- */
   main{ flex:1; min-width:0; padding:0; } 
   .panel{ display:block; }
 
-  /* --- SPLIT SCREEN LAYOUT (HALF PAGE) --- */
+  /* --- SPLIT SCREEN HERO (HALF PAGE) --- */
   .split-hero {
     display: flex;
-    /* This controls the height. It's not full screen (100vh), but a healthy banner size */
     height: 75vh; 
     min-height: 550px;
     max-height: 800px;
@@ -57,7 +56,7 @@
     padding: 60px 50px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers the content vertically */
+    justify-content: center;
     max-width: 50%;
   }
 
@@ -72,11 +71,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover; 
-    object-position: center top; /* Keeps your face and upper body in frame */
+    object-position: center top; 
     display: block;
   }
 
-  /* Biography Typography */
+  /* Hero Typography */
   .bio-heading {
     color: var(--brass);
     font-family: 'Fraunces', serif;
@@ -111,35 +110,129 @@
     margin: 0;
   }
 
-  /* Mobile */
+  /* --- NEWS TIMELINE SECTION --- */
+  .news-section {
+    padding: 60px 60px 80px;
+    background-color: var(--paper);
+  }
+  
+  .news-title {
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-size: 2.5rem;
+    color: var(--navy);
+    margin-bottom: 40px;
+  }
+
+  .news-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* The vertical line connecting the dots */
+  .news-timeline::before {
+    content: '';
+    position: absolute;
+    left: 127px; /* Aligns with the dots */
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: var(--line);
+    z-index: 1;
+  }
+
+  .news-item {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  /* Date Badge */
+  .news-date {
+    width: 120px;
+    flex-shrink: 0;
+    background: var(--navy);
+    color: var(--paper);
+    padding: 15px 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 4px;
+    z-index: 2;
+  }
+
+  /* The small circle on the timeline */
+  .news-dot {
+    position: absolute;
+    right: -7px; /* Centers on the vertical line */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 3px solid var(--brass); /* Uses your accent color */
+    z-index: 3;
+  }
+
+  /* Content Box */
+  .news-content {
+    flex-grow: 1;
+    margin-left: 34px;
+    background: var(--paper-2); /* Slight contrast from background */
+    padding: 20px 24px;
+    border-left: 4px solid var(--brass);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  }
+
+  .news-content p {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* --- MOBILE STYLING --- */
   .mobile-nav{ display:none; }
+  
   @media (max-width: 880px){
     .shell{ flex-direction:column; }
     .rail{ position:relative; width:100%; flex:none; height:auto; padding:22px 20px; }
     .rail nav{ display:none; }
     
+    /* Hero Mobile */
     .split-hero {
       flex-direction: column; 
-      height: auto; /* Allows it to flow naturally on mobile */
+      height: auto; 
       max-height: none;
     }
-    
     .split-hero-text {
       max-width: 100%;
       padding: 40px 22px;
-      order: 2; /* Text below image */
+      order: 2;
     }
-    
     .split-hero-image {
       width: 100%;
-      height: 50vh; /* Image height on mobile */
+      height: 50vh;
       order: 1;
     }
     
-    .split-hero-image img {
-      object-position: top center;
-    }
+    /* News Mobile */
+    .news-section { padding: 40px 22px; }
+    .news-timeline::before { display: none; }
+    .news-item { flex-direction: column; margin-bottom: 30px; }
+    .news-date { width: 100%; border-radius: 4px 4px 0 0; justify-content: flex-start; padding: 12px 16px; }
+    .news-dot { display: none; }
+    .news-content { margin-left: 0; border-left: none; border-top: 4px solid var(--brass); border-radius: 0 0 4px 4px; }
 
+    /* Mobile Nav Bar */
     .mobile-nav{
       display:flex; gap:6px; overflow-x:auto; padding:14px 16px;
       background:var(--navy-2); border-top:1px solid rgba(241,239,230,0.1);
@@ -155,6 +248,7 @@
 <body>
 
 <div class="shell">
+  <!-- LEFT SIDEBAR -->
   <aside class="rail">
     <div>
       <div class="rail-top">
@@ -192,7 +286,7 @@
   <main>
     <div class="panel active">
       
-      <!-- Split Screen Layout -->
+      <!-- HERO SECTION (Biography + Image) -->
       <div class="split-hero">
         
         <!-- Left Side: Text -->
@@ -212,6 +306,57 @@
           <img src="images/moshiur.jpg" alt="Moshiur Rahman">
         </div>
 
+      </div>
+
+      <!-- NEWS TIMELINE SECTION -->
+      <div class="news-section">
+        <h2 class="news-title">News</h2>
+        
+        <div class="news-timeline">
+          
+          <!-- Copy this entire <div class="news-item"> block to add more news -->
+          <div class="news-item">
+            <div class="news-date">
+              <span>May 2026</span>
+              <div class="news-dot"></div>
+            </div>
+            <div class="news-content">
+              <p>I have served as the publication chair of IEEE S&P 2025 and 2026.</p>
+            </div>
+          </div>
+
+          <div class="news-item">
+            <div class="news-date">
+              <span>February 2026</span>
+              <div class="news-dot"></div>
+            </div>
+            <div class="news-content">
+              <p>Our paper titled 'Gradient-Free Privacy Leakage in Federated Language Models through Selective Weight Tampering' has been accepted to PETS 2026. Congratulations to Rafi and the team!</p>
+            </div>
+          </div>
+
+          <div class="news-item">
+            <div class="news-date">
+              <span>December 2025</span>
+              <div class="news-dot"></div>
+            </div>
+            <div class="news-content">
+              <p>Our paper titled 'Can we estimate privacy vulnerability of individual records? Towards Mitigating Attribute Inference Attacks on ML Models' has been accepted to USENIX Security 2026. Congratulations to Ehsan and the team!</p>
+            </div>
+          </div>
+
+          <div class="news-item">
+            <div class="news-date">
+              <span>November 2025</span>
+              <div class="news-dot"></div>
+            </div>
+            <div class="news-content">
+              <p>Organized a tutorial on 'Data Security and Privacy in Machine Unlearning' at ICDM 2025 along with Aobo Chen, Wei Qian, Zheyuan Liu, Tianhao Wang, and Mengdi Huai.</p>
+            </div>
+          </div>
+          <!-- End of news items -->
+
+        </div>
       </div>
 
     </div>
