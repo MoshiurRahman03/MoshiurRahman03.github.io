@@ -58,6 +58,49 @@
     .mobile-nav a{ all:unset; cursor:pointer; white-space:nowrap; font-size:13.5px; color:rgba(241,239,230,0.65); padding:7px 12px; border-radius:20px; }
     .mobile-nav a.active{ background:var(--brass); color:var(--navy); font-weight:600; }
   }
+    /* --- TAB LINKS STYLING --- */
+  .tab-menu {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  
+  .tab-link {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: rgba(26,29,27,0.5);
+    text-decoration: none;
+    padding: 10px 0;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .tab-link:hover {
+    color: var(--navy);
+  }
+
+  .tab-link.active {
+    color: var(--navy);
+  }
+
+  .tab-link::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--brass);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .tab-link.active::after {
+    transform: scaleX(1);
+  }
 </style>
 </head>
 <body>
