@@ -8,19 +8,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* --- CORE CSS STRUCTURE --- */
-  :root{
-    --navy:#16232F; --navy-2:#1F3245;
-    --paper:#F1EFE6; --paper-2:#E8E5D8;
-    --ink:#1A1D1B; --brass:#9C7A34; --brass-soft:#C7A559;
-    --line: rgba(26,29,27,0.14);
-  }
+  /* --- CORE CSS (Same as projects.html) --- */
+  :root{ --navy:#16232F; --navy-2:#1F3245; --paper:#F1EFE6; --paper-2:#E8E5D8; --ink:#1A1D1B; --brass:#9C7A34; --brass-soft:#C7A559; --line: rgba(26,29,27,0.14); }
   *{ box-sizing:border-box; }
   body{ margin:0; background:var(--paper); color:var(--ink); font-family:'Source Sans 3', sans-serif; font-size:17px; line-height:1.65; }
   h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; line-height:1.14; margin:0; color:var(--navy); }
   .shell{ display:flex; align-items:flex-start; max-width:none; width:100%; margin:0; }
-  
-  /* Rail */
   .rail{ position:sticky; top:0; width:320px; flex:0 0 320px; height:100vh; background:var(--navy); color:var(--paper); padding:40px 30px; display:flex; flex-direction:column; justify-content:space-between; overflow-y: auto; }
   .avatar{ width:76px; height:76px; border-radius:50%; background:linear-gradient(155deg, var(--brass-soft), var(--brass)); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:26px; color:var(--navy); margin-bottom:18px; }
   .rail-top h1{ color:var(--paper); font-size:26px; margin-bottom:4px; }
@@ -35,57 +28,14 @@
   .rail-bottom a{ opacity:.65; transition:opacity .15s; color: var(--paper); }
   .rail-bottom a:hover{ opacity:1; }
   .rail-bottom svg{ width:18px; height:18px; }
-
-  /* Main Content */
   main{ flex:1; min-width:0; padding:56px 60px 90px; }
   .panel{ display:block; }
 
-  /* --- TAB LINKS STYLING --- */
-  .tab-menu {
-    display: flex;
-    gap: 30px;
-    margin-bottom: 40px;
-    border-bottom: 1px solid var(--line);
-  }
-  
-  .tab-link {
-    font-family: 'Fraunces', serif;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: rgba(26,29,27,0.5);
-    text-decoration: none;
-    padding: 10px 0;
-    position: relative;
-    transition: color 0.3s ease;
-  }
+  /* Back Link */
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--navy-2); text-decoration: none; margin-bottom: 30px; transition: color 0.2s; }
+  .back-link:hover { color: var(--brass); }
+  .back-link svg { width: 16px; height: 16px; }
 
-  .tab-link:hover {
-    color: var(--navy);
-  }
-
-  .tab-link.active {
-    color: var(--navy);
-  }
-
-  /* The gold underline for the active tab */
-  .tab-link::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--brass);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-
-  .tab-link.active::after {
-    transform: scaleX(1);
-  }
-
-  /* Projects Styling */
   .proj-group{ margin-bottom:34px; }
   .proj-group:last-child{ margin-bottom:0; }
   .proj-group > h3{ font-weight:700; font-size:13.5px; letter-spacing:.01em; color:var(--brass); margin-bottom:14px; }
@@ -97,8 +47,6 @@
   .proj .proj-link{ display:inline-flex; align-items:center; gap:6px; font-size:13.5px; font-weight:600; color:var(--navy-2); text-decoration:none; border-bottom:1px solid var(--brass); padding-bottom:1px; }
   .proj .proj-link:hover{ color:var(--brass); }
   .proj .proj-link svg{ width:13px; height:13px; }
-
-  /* Mobile */
   .mobile-nav{ display:none; }
   @media (max-width: 880px){
     .shell{ flex-direction:column; }
@@ -106,17 +54,8 @@
     .rail nav{ display:none; }
     main{ padding:36px 22px 70px; }
     .proj{ grid-template-columns:1fr; gap:6px; }
-    .tab-menu { gap: 15px; }
-    .tab-link { font-size: 1.1rem; }
-    
-    .mobile-nav{
-      display:flex; gap:6px; overflow-x:auto; padding:14px 16px;
-      background:var(--navy-2); border-top:1px solid rgba(241,239,230,0.1);
-    }
-    .mobile-nav a{
-      all:unset; cursor:pointer; white-space:nowrap; font-size:13.5px;
-      color:rgba(241,239,230,0.65); padding:7px 12px; border-radius:20px;
-    }
+    .mobile-nav{ display:flex; gap:6px; overflow-x:auto; padding:14px 16px; background:var(--navy-2); border-top:1px solid rgba(241,239,230,0.1); }
+    .mobile-nav a{ all:unset; cursor:pointer; white-space:nowrap; font-size:13.5px; color:rgba(241,239,230,0.65); padding:7px 12px; border-radius:20px; }
     .mobile-nav a.active{ background:var(--brass); color:var(--navy); font-weight:600; }
   }
 </style>
@@ -140,10 +79,7 @@
           <li><a href="education.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>Education</a></li>
           <li><a href="publications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Publications</a></li>
           <li><a href="skills.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Skills</a></li>
-          
-          <!-- Active Page -->
-          <li><a href="research_project.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l2-3h5l2 3h9v13H3z"/></svg>Projects</a></li>
-          
+          <li><a href="projects.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l2-3h5l2 3h9v13H3z"/></svg>Projects</a></li>
           <li><a href="certifications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l-2 5l2-2l2 2l-2-5"/><circle cx="12" cy="9" r="6"/></svg>Certifications</a></li>
           <li><a href="awards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>Awards</a></li>
           <li><a href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</a></li>
@@ -162,17 +98,15 @@
   <main>
     <div class="panel active">
       
-      <!-- Tab Links (Navigates to different files) -->
-      <div class="tab-menu">
-        <a href="research_project.html" class="tab-link active">Research Projects</a>
-        <a href="undergrad_project.html" class="tab-link">Undergrad Academic Projects</a>
-      </div>
+      <a href="projects.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> 
+        Back to Projects Hub
+      </a>
 
-      <!-- Research Projects Content -->
+      <h2 style="border-bottom: 3px solid #000000; padding-bottom: 5px; display: inline-block; margin-bottom: 26px;">Research Projects</h2>
+
       <div class="proj-group">
         <h3>Ongoing Research</h3>
-        
-        <!-- Example Project -->
         <div class="proj">
           <div>
             <div class="proj-name">Privacy-Preserving Machine Learning in Cyber-Physical Systems</div>
@@ -182,9 +116,6 @@
           <p class="proj-desc">Research work focusing on applying Gaussian mechanism based differential privacy and federated learning to smart meter data, investigating the privacy-utility trade-off.</p>
           <a class="proj-link" href="#">See Detailed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
         </div>
-        
-        <!-- Add more research projects here -->
-
       </div>
 
     </div>
@@ -198,7 +129,7 @@
   <a href="education.html">Education</a>
   <a href="publications.html">Publications</a>
   <a href="skills.html">Skills</a>
-  <a href="research_project.html" class="active">Projects</a>
+  <a href="projects.html" class="active">Projects</a>
   <a href="certifications.html">Certifications</a>
   <a href="awards.html">Awards</a>
   <a href="contact.html">Contact</a>
@@ -206,13 +137,12 @@
 
 <script>
   (function(){
-    var page = window.location.pathname.split("/").pop() || 'home.html';
+    var page = window.location.pathname.split("/").pop() || 'projects.html';
     var links = document.querySelectorAll('.rail nav a, .mobile-nav a');
     
     links.forEach(function(link) {
       link.classList.remove('active');
-      // Check if current page matches href OR if it's the project pages
-      if (link.getAttribute('href') === page || (page.includes('project') && link.getAttribute('href').includes('project'))) {
+      if (link.getAttribute('href') === page || (page.includes('project') && link.getAttribute('href') === 'projects.html')) {
         link.classList.add('active');
       }
     });
