@@ -116,12 +116,16 @@
     background-color: var(--paper);
   }
   
+  /* UPDATED: Left aligned with thin line */
   .news-title {
-    text-align: center;
+    text-align: left;
     font-family: 'Fraunces', serif;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--navy);
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+    width: 100%;
   }
 
   .news-timeline {
@@ -134,7 +138,7 @@
   .news-timeline::before {
     content: '';
     position: absolute;
-    left: 127px; /* Aligns with the dots */
+    left: 127px; 
     top: 10px;
     bottom: 10px;
     width: 2px;
@@ -144,7 +148,7 @@
 
   .news-item {
     display: flex;
-    align-items: stretch;
+    align-items: flex-start; /* UPDATED: Stops the boxes from stretching */
     margin-bottom: 24px;
     position: relative;
   }
@@ -152,10 +156,11 @@
   /* Date Badge */
   .news-date {
     width: 120px;
+    height: 56px; /* UPDATED: Fixed height so they don't stretch */
     flex-shrink: 0;
     background: var(--navy);
     color: var(--paper);
-    padding: 15px 10px;
+    padding: 10px;
     text-align: center;
     font-weight: 600;
     font-size: 0.95rem;
@@ -170,14 +175,14 @@
   /* The small circle on the timeline */
   .news-dot {
     position: absolute;
-    right: -7px; /* Centers on the vertical line */
+    right: -7px; 
     top: 50%;
     transform: translateY(-50%);
     width: 14px;
     height: 14px;
     border-radius: 50%;
     background: var(--paper);
-    border: 3px solid var(--brass); /* Uses your accent color */
+    border: 3px solid var(--brass); 
     z-index: 3;
   }
 
@@ -185,7 +190,7 @@
   .news-content {
     flex-grow: 1;
     margin-left: 34px;
-    background: var(--paper-2); /* Slight contrast from background */
+    background: var(--paper-2); 
     padding: 20px 24px;
     border-left: 4px solid var(--brass);
     border-radius: 0 4px 4px 0;
@@ -228,7 +233,7 @@
     .news-section { padding: 40px 22px; }
     .news-timeline::before { display: none; }
     .news-item { flex-direction: column; margin-bottom: 30px; }
-    .news-date { width: 100%; border-radius: 4px 4px 0 0; justify-content: flex-start; padding: 12px 16px; }
+    .news-date { width: 100%; height: auto; border-radius: 4px 4px 0 0; justify-content: flex-start; padding: 12px 16px; }
     .news-dot { display: none; }
     .news-content { margin-left: 0; border-left: none; border-top: 4px solid var(--brass); border-radius: 0 0 4px 4px; }
 
@@ -314,7 +319,6 @@
         
         <div class="news-timeline">
           
-          <!-- Copy this entire <div class="news-item"> block to add more news -->
           <div class="news-item">
             <div class="news-date">
               <span>May 2026</span>
@@ -354,7 +358,6 @@
               <p>Organized a tutorial on 'Data Security and Privacy in Machine Unlearning' at ICDM 2025 along with Aobo Chen, Wei Qian, Zheyuan Liu, Tianhao Wang, and Mengdi Huai.</p>
             </div>
           </div>
-          <!-- End of news items -->
 
         </div>
       </div>
