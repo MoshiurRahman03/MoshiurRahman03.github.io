@@ -42,15 +42,17 @@
   .panel{ display:block; }
   .eyebrow{ font-family:'Fraunces',serif; font-size:14px; color:var(--brass); margin-bottom:6px; display:block; }
   
-  /* --- HERO SECTION --- */
+  /* --- HERO SECTION (UPDATED TO SHOW FULL IMAGE) --- */
   .hero {
     position: relative;
     width: 100%;
-    height: 60vh; /* Takes up 60% of the viewport height */
-    min-height: 400px;
-    background-image: url('images/moshiur.jpg'); /* Your portrait image */
-    background-size: cover;
-    background-position: center 20%; /* Adjust this percentage if your face gets cut off */
+    height: 75vh; /* Made taller to fit the vertical image better */
+    min-height: 550px;
+    background-image: url('images/moshiur.jpg'); 
+    background-size: contain; /* Shows the FULL image without cropping */
+    background-position: right center; /* Pushes the image to the right */
+    background-repeat: no-repeat;
+    background-color: var(--navy); /* Matches the background color to the left */
     display: flex;
     align-items: center;
     padding: 0 60px;
@@ -60,7 +62,8 @@
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+    /* Gradient fades from dark navy on the left to transparent on the right */
+    background: linear-gradient(90deg, rgba(22,35,47,0.95) 0%, rgba(22,35,47,0.8) 45%, rgba(22,35,47,0) 65%);
   }
 
   .hero-content {
@@ -94,11 +97,11 @@
     padding: 56px 60px 90px;
   }
 
-  /* --- BIOGRAPHY SECTION (UPDATED) --- */
+  /* --- BIOGRAPHY SECTION --- */
   .home-header {
     display: block;
     margin-bottom: 30px;
-    max-width: 850px; /* Limits text width for better readability */
+    max-width: 850px; 
   }
 
   /* Mobile */
@@ -108,7 +111,16 @@
     .rail{ position:relative; width:100%; flex:none; height:auto; padding:22px 20px; }
     .rail nav{ display:none; }
     
-    .hero { height: 50vh; padding: 0 22px; }
+    .hero { 
+      height: 60vh; 
+      padding: 0 22px; 
+      background-position: center bottom; /* Centers image on mobile */
+    }
+    .hero::before {
+      /* On mobile, make the gradient dark at the bottom where text is */
+      background: linear-gradient(0deg, rgba(22,35,47,0.95) 0%, rgba(22,35,47,0.7) 50%, rgba(22,35,47,0) 100%);
+    }
+    .hero-content { margin-top: auto; padding-bottom: 40px; }
     .hero-content h1 { font-size: 2.5rem; }
     .hero-content p { font-size: 1.2rem; }
     
@@ -166,7 +178,7 @@
   <main>
     <div class="panel active">
       
-      <!-- Hero Section with Background Image -->
+      <!-- Hero Section with Full Background Image -->
       <div class="hero">
         <div class="hero-content">
           <h1>Moshiur Rahman</h1>
@@ -174,7 +186,7 @@
         </div>
       </div>
 
-      <!-- Biography Section (Image removed, text expanded) -->
+      <!-- Biography Section -->
       <div class="content-wrapper">
         <div class="home-header">
           <span class="eyebrow" style="font-size: 2rem; font-weight:700; border-bottom: 3px solid var(--brass); padding-bottom: 6px; display: inline-block; margin-bottom: 24px;">Biography</span>
