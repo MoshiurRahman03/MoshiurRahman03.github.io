@@ -40,25 +40,25 @@
   main{ flex:1; min-width:0; padding:56px 60px 90px; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; }
   .panel{ display:block; width: 100%; max-width: 1000px; margin: 0 auto; }
   
-    .page-title {
+      .page-title {
     font-size: 2.5rem;
-    margin-bottom: 10px;
+    margin: 0 auto 10px auto; /* Centers the title block */
     color: var(--navy);
     text-align: center;
     position: relative;
-    padding-bottom: 15px; /* Space between text and line */
+    padding-bottom: 12px; /* Space between text and line */
+    display: table; /* Forces the width to match the text exactly */
   }
 
-  /* This creates the thin underline */
+  /* This creates the black underline */
   .page-title::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px; /* Adjust this to make the line longer or shorter */
+    left: 0;
+    width: 100%; /* Matches the exact width of the text */
     height: 2px; /* Thickness of the line */
-    background-color: var(--brass); /* Use var(--line) if you want a subtle grey line instead of gold */
+    background-color: #000000; /* Black line */
   }
   .page-subtitle {
     text-align: center;
