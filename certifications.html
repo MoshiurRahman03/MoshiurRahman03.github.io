@@ -39,8 +39,30 @@
   /* Main Content */
   main{ flex:1; min-width:0; padding:56px 60px 90px; }
   .panel{ display:block; }
+  
+  /* Section Subheadings */
+  .section-heading {
+    font-family:'Fraunces',serif;
+    font-size: 20px;
+    color: var(--navy-2);
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .section-heading:first-of-type {
+    margin-top: 0;
+  }
+
+  .edu-block { margin-bottom: 30px; }
   .edu-block .school{ font-family:'Fraunces',serif; font-size:22px; color:var(--navy); margin-bottom:2px; }
-  .edu-block .meta{ font-size:14.5px; color:#555; margin-bottom:20px; }
+  .edu-block .meta{ font-size:14.5px; color:#555; margin-bottom:10px; font-weight: 600; }
+  .edu-block p { margin-top: 5px; margin-bottom: 0; }
+  
+  .bullets { margin-top: 5px; padding-left: 20px; }
+  .bullets li { margin-bottom: 6px; }
 
   /* Mobile */
   .mobile-nav{ display:none; }
@@ -101,19 +123,35 @@
 
   <main>
     <div class="panel active">
-      <!-- Fixed: Removed invalid span wrapper -->
       <h2 style="border-bottom: 3px solid #000000; padding-bottom: 5px; display: inline-block; margin-bottom: 26px;">Certifications & Professional Development</h2>
       
-      <div class="edu-block">
-        
-        <!-- START COPYING CERTIFICATES HERE -->
-        <div class="school">Course or Certification Name</div>
-        <div class="meta">Issuing Organization · Year</div>
-        <p>Short description of what you learned or achieved. You can delete this line if you don't need a description.</p>
-        <br>
-        <!-- END COPYING CERTIFICATES HERE -->
+      <!-- Certifications Section -->
+      <h3 class="section-heading">Certifications</h3>
 
+      <div class="edu-block">
+        <div class="school">Quantum Machine Learning Webinar Series</div>
+        <div class="meta">QVertex · August 2026 - September 2026</div>
+        <ul class="bullets">
+          <li>Completed an intensive 5-week webinar series covering the fundamentals of quantum computing and quantum machine learning, including Quantum Support Vector Machines (QSVM) and Quantum Convolutional Neural Networks (QCNN).</li>
+          <li>Gained hands-on experience with emerging real-world applications and projects using industry-standard tools such as Qiskit, PennyLane, and the QVertex platform.</li>
+        </ul>
       </div>
+
+      <div class="edu-block">
+        <div class="school">Intro to Data Science</div>
+        <div class="meta">Online Learning Track · [Insert Year]</div>
+        <p>Completed a comprehensive curriculum covering Python basics, data manipulation with NumPy and Pandas, data visualization with Matplotlib, machine learning (Supervised & Unsupervised, Model Evaluation, Feature Engineering), SQL, Time Series Data, and business applications. Successfully completed a final assignment and competition tutorial.</p>
+      </div>
+
+      <!-- Professional Experience Section -->
+      <h3 class="section-heading">Professional Experience</h3>
+
+      <div class="edu-block">
+        <div class="school">PGCB: Industrial Trainee</div>
+        <div class="meta">Power Grid Company of Bangladesh (PGCB) · November 2025</div>
+        <p>Completed industrial attachment with exposure to multiple departments involved in national power transmission and grid management, including substations, NLDC, protection, planning, testing, and communication systems.</p>
+      </div>
+
     </div>
   </main>
 </div>
