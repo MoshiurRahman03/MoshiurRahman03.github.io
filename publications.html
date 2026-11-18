@@ -41,21 +41,131 @@
   .panel{ display:block; }
   .eyebrow{ font-family:'Fraunces',serif; font-size:14px; color:var(--brass); margin-bottom:6px; display:block; }
 
-  /* Publications Styling */
-  .pub-card{ background:var(--paper-2); border:1px solid var(--line); margin-bottom:20px; }
-  .pub-card:last-child{ margin-bottom:0; }
-  .pub-summary{ list-style:none; cursor:pointer; position:relative; padding:22px 64px 22px 22px; display:block; }
-  .pub-summary::-webkit-details-marker{ display:none; }
-  .pub-summary::marker{ content:""; }
-  .pub-title{ font-size:17px; font-weight:600; color:var(--navy); margin-bottom:10px; max-width:66ch; }
-  .pub-badge{ display:inline-block; font-size:12px; font-weight:600; padding:4px 11px; background:var(--brass); color:var(--navy); border-radius:3px; margin-bottom:12px; }
-  .pub-meta{ font-size:14px; color:#555; }
-  .pub-toggle{ position:absolute; top:22px; right:22px; width:32px; height:32px; background:var(--brass); border-radius:4px; }
-  .pub-toggle::before{ content:""; position:absolute; width:14px; height:2px; background:var(--navy); top:50%; left:50%; transform:translate(-50%,-50%); }
-  .pub-toggle::after{ content:""; position:absolute; width:2px; height:14px; background:var(--navy); top:50%; left:50%; transform:translate(-50%,-50%); transition:transform .2s ease; }
-  details[open] .pub-toggle::after{ transform:translate(-50%,-50%) scaleY(0); }
-  .pub-abstract{ padding:0 22px 24px; border-top:1px solid var(--line); margin-top:-1px; }
-  .pub-abstract p{ font-size:15px; color:#333; padding-top:18px; max-width:72ch; margin-bottom:0; }
+  /* --- PROFESSIONAL PUBLICATIONS STYLING --- */
+  .pub-card {
+    background: #FFFFFF; 
+    border: 1px solid rgba(22, 35, 47, 0.08); 
+    border-radius: 8px;
+    margin-bottom: 24px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(22, 35, 47, 0.03); 
+    overflow: hidden;
+  }
+
+  .pub-card:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 12px 24px rgba(22, 35, 47, 0.08); 
+    border-color: rgba(156, 122, 52, 0.3); 
+  }
+
+  .pub-summary {
+    list-style: none; 
+    cursor: default; /* Changed from pointer so it doesn't look clickable */
+    position: relative; 
+    padding: 26px 70px 26px 26px; 
+    display: block;
+  }
+  
+  .pub-summary::-webkit-details-marker { display:none; }
+  .pub-summary::marker { content:""; }
+
+  .pub-title { 
+    font-size: 18px; 
+    font-weight: 600; 
+    color: var(--navy); 
+    margin-bottom: 12px; 
+    max-width: 65ch; 
+    line-height: 1.4;
+  }
+
+  .pub-badge { 
+    display: inline-block; 
+    font-size: 12px; 
+    font-weight: 700; 
+    padding: 5px 12px; 
+    background: rgba(156, 122, 52, 0.1); 
+    color: var(--brass); 
+    border: 1px solid rgba(156, 122, 52, 0.3);
+    border-radius: 20px; 
+    margin-bottom: 14px; 
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .pub-meta { 
+    font-size: 15px; 
+    color: #555; 
+    margin-bottom: 4px;
+  }
+  .pub-meta:last-of-type {
+    margin-bottom: 0;
+  }
+  
+  /* Style for DOI link */
+  .pub-doi a {
+    color: var(--brass);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dotted var(--brass);
+    transition: all 0.2s;
+  }
+  .pub-doi a:hover {
+    color: var(--navy);
+    border-bottom: 1px solid var(--navy);
+  }
+
+  /* Animated Chevron Icon */
+  .pub-toggle { 
+    position: absolute; 
+    top: 30px; 
+    right: 26px; 
+    width: 32px; 
+    height: 32px; 
+    background: var(--paper-2); 
+    border-radius: 50%; 
+    transition: all 0.3s ease;
+    cursor: pointer; /* Pointer only on the arrow */
+  }
+
+  .pub-toggle::before, .pub-toggle::after {
+    content: ""; 
+    position: absolute; 
+    background: var(--navy); 
+    transition: all 0.3s ease;
+    width: 10px;
+    height: 2px;
+    top: 15px;
+  }
+  .pub-toggle::before { left: 8px; transform: rotate(45deg); }
+  .pub-toggle::after { right: 8px; transform: rotate(-45deg); }
+
+  details[open] .pub-toggle { background: var(--brass); }
+  details[open] .pub-toggle::before { background: #fff; transform: rotate(-45deg); }
+  details[open] .pub-toggle::after { background: #fff; transform: rotate(45deg); }
+
+  /* Smooth Fade-in for Abstract */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .pub-abstract { 
+    padding: 0 26px 26px; 
+    border-top: 1px solid rgba(22, 35, 47, 0.05); 
+    margin-top: 0; 
+    animation: fadeIn 0.4s ease forwards;
+  }
+
+  .pub-abstract p { 
+    font-size: 15.5px; 
+    color: #333; 
+    padding-top: 20px; 
+    max-width: 72ch; 
+    margin-bottom: 0; 
+    line-height: 1.7;
+  }
+
+  h2 { margin-top: 20px; margin-bottom: 30px; font-size: 1.8rem; }
 
   /* Mobile */
   .mobile-nav{ display:none; }
@@ -64,6 +174,12 @@
     .rail{ position:relative; width:100%; flex:none; height:auto; padding:22px 20px; }
     .rail nav{ display:none; }
     main{ padding:36px 22px 70px; }
+    
+    .pub-summary { padding: 20px 50px 20px 20px; }
+    .pub-toggle { top: 20px; right: 20px; width: 28px; height: 28px; }
+    .pub-toggle::before, .pub-toggle::after { top: 13px; }
+    .pub-toggle::before { left: 7px; }
+    .pub-toggle::after { right: 7px; }
     
     .mobile-nav{
       display:flex; gap:6px; overflow-x:auto; padding:14px 16px;
@@ -108,31 +224,35 @@
       </nav>
     </div>
     <div class="rail-bottom">
-      <a href="moshiur2003rahman@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+      <a href="mailto:moshiur2003rahman@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
       <a href="https://linkedin.com/in/moshiur-r-28479525b" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9v12"/><path d="M10 13a4 4 0 0 1 8 0v8"/></svg></a>
       <a href="https://orcid.org/0009-0006-1270-1631" target="_blank" rel="noopener" aria-label="ORCID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="9" cy="8.5" r="0.9" fill="currentColor" stroke="none"/><line x1="9" y1="11" x2="9" y2="16"/><path d="M12.5 11h1.8a2.7 2.7 0 0 1 0 5.4h-1.8v-5.4z"/></svg></a>
-      <a href="2006099@eee.buet.ac.bd" aria-label="Outlook Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+      <a href="mailto:2006099@eee.buet.ac.bd" aria-label="Outlook Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
     </div>
   </aside>
 
   <main>
     <div class="panel active">
-           <span class="eyebrow" style="font-size:16px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding-bottom:6px; border-bottom:2px solid var(--brass); display:inline-block;">Publications</span>
+      <span class="eyebrow" style="font-size:16px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding-bottom:6px; border-bottom:2px solid var(--brass); display:inline-block;">Publications</span>
       
-      <br><br> <!-- Added line breaks here to push the title down -->
+      <br><br> 
 
-      <h2 style="border-bottom: 3px solid #000000; padding-bottom: 5px; display: inline-block; margin-bottom: 26px;">Journal</h2>
-      <details class="pub-card">
+      <h2 style="border-bottom: 3px solid var(--navy); padding-bottom: 5px; display: inline-block; margin-bottom: 26px;">Journal</h2>
+      
+      <details class="pub-card" id="pub1">
         <summary class="pub-summary">
           <div class="pub-title">Privacy-Preserving Socio-Demographic Characteristics Identification using Smart Meter Data in Federated Setting</div>
           <span class="pub-badge">Journal Paper</span>
           <div class="pub-meta">Rahman, M., Islam, N., &amp; Imtiaz, H.</div>
           <div class="pub-meta">Energy Informatics | Springer Nature</div>
           <div class="pub-meta">Publication year: 2026 &middot; Under editorial review</div>
+          <!-- NEW DOI ROW -->
+          <div class="pub-meta pub-doi">DOI: <a href="#" target="_blank">Pending Publication</a></div>
+          
           <span class="pub-toggle" aria-hidden="true"></span>
         </summary>
         <div class="pub-abstract">
-          <p><!-- Replace this paragraph with your paper's actual abstract --> Abstract goes here — paste the abstract from your manuscript once it is finalized.</p>
+          <p>Abstract goes here — paste the abstract from your manuscript once it is finalized.</p>
         </div>
       </details>
     </div>
@@ -153,6 +273,7 @@
 </div>
 
 <script>
+  // Highlight active sidebar link
   (function(){
     var page = window.location.pathname.split("/").pop() || 'home.html';
     var links = document.querySelectorAll('.rail nav a, .mobile-nav a');
@@ -164,6 +285,24 @@
       }
     });
   })();
+
+  // Custom logic: Prevent default toggle unless clicking the arrow
+  document.querySelectorAll('.pub-summary').forEach(summary => {
+    summary.addEventListener('click', function(e) {
+      // Prevent the default toggle behavior
+      e.preventDefault();
+      
+      // Check if the click was exactly on the toggle arrow
+      if (e.target.closest('.pub-toggle')) {
+        const details = this.parentElement;
+        if (details.hasAttribute('open')) {
+          details.removeAttribute('open');
+        } else {
+          details.setAttribute('open', '');
+        }
+      }
+    });
+  });
 </script>
 </body>
 </html>
